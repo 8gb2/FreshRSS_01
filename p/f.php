@@ -37,7 +37,8 @@ if ($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (mt
 		show_default_favicon(1800);
 		exit();
 	}
-	if (!download_favicon($url[intval($url[0])], $ico)) {
+	$i = intval($url[0]);
+	if (!download_favicon($url[$i], $ico, $i == 3)) {
 		// Download failed
 		if ($ico_mtime == false) {
 			show_default_favicon(86400);
