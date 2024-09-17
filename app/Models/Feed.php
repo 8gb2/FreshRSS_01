@@ -88,7 +88,11 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->id;
 	}
 
-	public function hash(): string {
+	public function hash(string $extra = ''): string {
+		if ($extra != '')
+		{
+			return hash('crc32b', $salt . $this->url . $this->iconUser);
+		}
 		if ($this->hash == '') {
 			$salt = FreshRSS_Context::systemConf()->salt;
 			$this->hash = hash('crc32b', $salt . $this->url);
@@ -277,27 +281,28 @@ class FreshRSS_Feed extends Minz_Model {
 			$url = $this->url;
 		}
 		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
-		$txt = FAVICONS_DIR . $this->hash() . '.txt';
-		if (@file_get_contents($txt) !== $url) {
-			file_put_contents($txt, $url);
+		$txt = FAVICONS_DIR . $this->hash($this->iconUser) . '.txt';
+		$file = "1\n$url\n$urlAlt\n$site";
+		if (file_get_contents($txt) == false || substr_compare(@file_get_contents($txt),$file,2)) {
+			file_put_contents($txt, $file);
 		}
 		if (FreshRSS_Context::$isCli) {
-			$ico = FAVICONS_DIR . $this->hash() . '.ico';
+			$ico = FAVICONS_DIR . $this->hash($this->iconUser) . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
 			if ($txt_mtime != false &&
 				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
 				// no ico file or we should download a new one.
-				$url = file_get_contents($txt);
-				if (($url == false || !download_favicon($url, $ico, false))) {
+				$urls = explode("\n",file_get_contents($txt));
+				if (($urls == false || !download_favicon($urls[intval($urls[0])], $ico, false))) {
 					$fallSite = true;
 					if ($urlAlt != '') {
-						file_put_contents($txt, $urlAlt);
-						$fallSite = !download_favicon($urlAlt, $ico, false);
+						file_put_contents($txt, "2\n$url\n$urlAlt\n$site");
+						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
 					}
 					if ($fallSite) {
-						file_put_contents($txt, $site);
-						if (!download_favicon($site, $ico, true)) {
+						file_put_contents($txt, "3\n$url\n$urlAlt\n$site");
+						if (!download_favicon($urls[intval($urls[0])], $ico, true)) {
 							touch($ico);
 						}
 					}
