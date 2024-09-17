@@ -702,6 +702,13 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 						$feedProperties['description'] = $feed->description();
 					}
 				}
+				if (trim($feed->iconFeed()) === '' || trim($feed->iconFeed()) !== trim(str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())))) {
+					$icon = str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url()));
+					if ($icon !== '' && $icon !== null) {
+						$feed->_iconFeed($icon);
+						$feedProperties['iconFeed'] = $feed->iconFeed();
+					}
+				}
 			}
 			if (!empty($feedProperties)) {
 				$ok = $feedDAO->updateFeed($feed->id(), $feedProperties);
