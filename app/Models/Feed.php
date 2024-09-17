@@ -274,15 +274,14 @@ class FreshRSS_Feed extends Minz_Model {
 			$url = $this->iconFeed;
 			$urlAlt = '';
 		}
-		if ($url == '') {
-			$url = $this->website;
-		}
-		if ($url == '') {
-			$url = $this->url;
-		}
 		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
 		$txt = FAVICONS_DIR . $this->hash($this->iconUser) . '.txt';
-		$file = "1\n$url\n$urlAlt\n$site";
+		if ($url == '') {
+			$file = "3\n$url\n$urlAlt\n$site";
+		}
+		else {
+			$file = "1\n$url\n$urlAlt\n$site";
+		}
 		if (file_get_contents($txt) == false) {
 			file_put_contents($txt, $file);
 		}
@@ -298,8 +297,11 @@ class FreshRSS_Feed extends Minz_Model {
 				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
 				// no ico file or we should download a new one.
 				$urls = explode("\n",file_get_contents($txt));
-				if (($urls == false || !download_favicon($urls[intval($urls[0])], $ico, false))) {
+				if ($urls == false ) {
 					$fallSite = true;
+					if ($url != '') {
+						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
+					}
 					if ($urlAlt != '') {
 						file_put_contents($txt, "2\n$url\n$urlAlt\n$site");
 						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
