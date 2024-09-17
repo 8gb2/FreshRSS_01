@@ -283,7 +283,11 @@ class FreshRSS_Feed extends Minz_Model {
 		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
 		$txt = FAVICONS_DIR . $this->hash($this->iconUser) . '.txt';
 		$file = "1\n$url\n$urlAlt\n$site";
-		if (file_get_contents($txt) == false || substr_compare(@file_get_contents($txt),$file,2)) {
+		if (file_get_contents($txt) == false) {
+			file_put_contents($txt, $file);
+		}
+		elseif (substr_compare(@file_get_contents($txt),$file,2) != 0)
+		{
 			file_put_contents($txt, $file);
 		}
 		if (FreshRSS_Context::$isCli) {
@@ -317,7 +321,7 @@ class FreshRSS_Feed extends Minz_Model {
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hash());
+		return Minz_Url::display('/f.php?' . $this->hash($this->iconUser));
 	}
 
 	public function _id(int $value): void {
