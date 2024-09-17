@@ -89,12 +89,12 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 
 	public function hash(string $extra = ''): string {
+		$salt = FreshRSS_Context::systemConf()->salt;
 		if ($extra != '')
 		{
 			return hash('crc32b', $salt . $this->url . $this->iconUser);
 		}
 		if ($this->hash == '') {
-			$salt = FreshRSS_Context::systemConf()->salt;
 			$this->hash = hash('crc32b', $salt . $this->url);
 		}
 		return $this->hash;
