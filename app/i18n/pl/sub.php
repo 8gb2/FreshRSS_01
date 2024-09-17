@@ -77,6 +77,7 @@ return array(
 			'_' => 'Akcje filtrowania',
 			'help' => 'Jedno zapytanie na linię. Operatory opisane są w <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">dokumentacji</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informacja',
 		'keep_min' => 'Minimalna liczba wiadomości do do przechowywania',
 		'kind' => array(

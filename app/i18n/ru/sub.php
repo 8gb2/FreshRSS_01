@@ -77,6 +77,7 @@ return array(
 			'_' => 'Действия фильтрации',
 			'help' => 'Введите по одному поисковому фильтру в строке. См. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">документацию</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Информация',
 		'keep_min' => 'Оставлять статей не менее',
 		'kind' => array(

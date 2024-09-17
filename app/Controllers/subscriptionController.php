@@ -286,6 +286,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				'description' => sanitizeHTML(Minz_Request::paramString('description', true)),
 				'website' => checkUrl(Minz_Request::paramString('website')) ?: '',
 				'url' => checkUrl(Minz_Request::paramString('url')) ?: '',
+				'iconUser' => checkUrl(Minz_Request::paramString('iconUser')) ?: '',
 				'category' => Minz_Request::paramInt('category'),
 				'pathEntries' => Minz_Request::paramString('path_entries'),
 				'priority' => Minz_Request::paramTernary('priority') === null ? FreshRSS_Feed::PRIORITY_MAIN_STREAM : Minz_Request::paramInt('priority'),
@@ -319,6 +320,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				// update url and website values for faviconPrepare
 				$feed->_url($values['url'], false);
 				$feed->_website($values['website'], false);
+				$feed->_iconUser($values['iconUser'], false);
 				$feed->faviconPrepare();
 
 				Minz_Request::good(_t('feedback.sub.feed.updated'), $url_redirect);

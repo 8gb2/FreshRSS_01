@@ -77,6 +77,7 @@ return array(
 			'_' => 'Filtra darbības',
 			'help' => 'Uzrakstiet vienu meklēšanas filtru katrā rindā. Operators <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">see documentation</a>.',	// DIRTY
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informācija',
 		'keep_min' => 'Minimālais saglabājamo izstrādājumu skaits',
 		'kind' => array(

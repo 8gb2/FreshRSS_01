@@ -77,6 +77,7 @@ return array(
 			'_' => 'Filtrar acciones',
 			'help' => 'Escribir un filtro de búsqueda por línea. Ver <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">documentación de operadores de búsqueda</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Información',
 		'keep_min' => 'Número mínimo de artículos a conservar',
 		'kind' => array(

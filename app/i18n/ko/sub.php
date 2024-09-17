@@ -77,6 +77,7 @@ return array(
 			'_' => '필터 동작',
 			'help' => '한 줄에 한 검색 필터를 작성해 주세요. 실행시 <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">문서 참고</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => '정보',
 		'keep_min' => '최소 유지 글 개수',
 		'kind' => array(

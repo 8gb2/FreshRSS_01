@@ -77,6 +77,7 @@ return array(
 			'_' => ' اعمال فیلتر',
 			'help' => ' در هر خط یک فیلتر جستجو بنویسید. اپراتورها <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">مستندات را ببینید</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => ' اطلاعات',
 		'keep_min' => ' حداقل تعداد مقالات برای نگهداری',
 		'kind' => array(

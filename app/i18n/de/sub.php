@@ -77,6 +77,7 @@ return array(
 			'_' => 'Filteraktionen',
 			'help' => 'Ein Suchfilter pro Zeile. Operatoren <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">siehe Dokumentation</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Information',	// IGNORE
 		'keep_min' => 'Minimale Anzahl an Artikeln, die behalten wird',
 		'kind' => array(

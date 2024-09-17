@@ -52,6 +52,8 @@ class FreshRSS_Feed extends Minz_Model {
 	private int $nbNotRead = -1;
 	private string $name = '';
 	private string $website = '';
+	private string $iconFeed = '';
+	private string $iconUser = '';
 	private string $description = '';
 	private int $lastUpdate = 0;
 	private int $priority = self::PRIORITY_MAIN_STREAM;
@@ -99,6 +101,40 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 	public function selfUrl(): string {
 		return $this->selfUrl;
+	}
+	public function iconUrl(bool $returnNull = false): string | null {
+		if ($this->iconUser !== '')
+		{
+			return $this->iconUser;
+		}
+		else if($this->iconFeed !== '' || !$returnNull)
+		{
+			return $this->iconFeed;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	public function iconFeed(bool $returnNull = false): string | null {
+		if ($this->iconFeed !== '' || !$returnNull)
+		{
+			return $this->iconFeed;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	public function iconUser(bool $returnNull = false): string | null {
+		if ($this->iconUser !== '' || !$returnNull)
+		{
+			return $this->iconUser;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	public function kind(): int {
 		return $this->kind;
@@ -225,10 +261,22 @@ class FreshRSS_Feed extends Minz_Model {
 
 	public function faviconPrepare(): void {
 		require_once(LIB_PATH . '/favicons.php');
-		$url = $this->website;
+		$url = $this->iconUser;
+		$urlAlt = $this->iconFeed;
+		$site = ($this->website != '' ? $this->website : $this->url);
+		error_log('user: ' . $this->iconUser . ' feed: ' . $this->iconFeed . ' site: ' . $this->website);
+		if ($url == '')
+		{
+			$url = $this->iconFeed;
+			$urlAlt = '';
+		}
+		if ($url == '') {
+			$url = $this->website;
+		}
 		if ($url == '') {
 			$url = $this->url;
 		}
+		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
 		$txt = FAVICONS_DIR . $this->hash() . '.txt';
 		if (@file_get_contents($txt) !== $url) {
 			file_put_contents($txt, $url);
@@ -241,8 +289,18 @@ class FreshRSS_Feed extends Minz_Model {
 				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
 				// no ico file or we should download a new one.
 				$url = file_get_contents($txt);
-				if ($url == false || !download_favicon($url, $ico)) {
-					touch($ico);
+				if (($url == false || !download_favicon($url, $ico, false))) {
+					$fallSite = true;
+					if ($urlAlt != '') {
+						file_put_contents($txt, $urlAlt);
+						$fallSite = !download_favicon($urlAlt, $ico, false);
+					}
+					if ($fallSite) {
+						file_put_contents($txt, $site);
+						if (!download_favicon($site, $ico, true)) {
+							touch($ico);
+						}
+					}
 				}
 			}
 		}
@@ -302,6 +360,38 @@ class FreshRSS_Feed extends Minz_Model {
 			$value = '';
 		}
 		$this->website = $value;
+	}
+	public function _iconUrl(string $valueFeed, string $valueUser, bool $validate = true): void {
+		if ($validate) {
+			$valueFeed = checkUrl($valueFeed);
+			$valueUser = checkUrl($valueUser);
+		}
+		if ($valueFeed == false) {
+			$valueFeed = '';
+		}
+		if ($valueUser == false) {
+			$valueUser = '';
+		}
+		$this->iconFeed = $valueFeed;
+		$this->iconUser = $valueUser;
+	}
+	public function _iconFeed(string $value, bool $validate = true): void {
+		if ($validate) {
+			$value = checkUrl($value);
+		}
+		if ($value == false) {
+			$value = '';
+		}
+		$this->iconFeed = $value;
+	}
+	public function _iconUser(string $value, bool $validate = true): void {
+		if ($validate) {
+			$value = checkUrl($value);
+		}
+		if ($value == false) {
+			$value = '';
+		}
+		$this->iconUser = $value;
 	}
 	public function _description(string $value): void {
 		$this->description = $value == '' ? '' : $value;
@@ -404,6 +494,10 @@ class FreshRSS_Feed extends Minz_Model {
 					}
 					if ($this->description() === '') {
 						$this->_description(html_only_entity_decode($simplePie->get_description()));
+					}
+					if ($this->iconFeed() === '') {
+						$this->_iconFeed(str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())));
+						error_log('iconurl ' . str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())));
 					}
 				} else {
 					//The case of HTTP 301 Moved Permanently

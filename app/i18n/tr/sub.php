@@ -77,6 +77,7 @@ return array(
 			'_' => 'Eylemi filtrele',
 			'help' => 'Her satıra tek bir arama filtresi yaz. <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">dökümantasyonu incele</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Bilgi',
 		'keep_min' => 'En az tutulacak makale sayısı',
 		'kind' => array(

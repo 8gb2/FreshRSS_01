@@ -77,6 +77,7 @@ return array(
 			'_' => 'Filteracties',
 			'help' => 'Voer één zoekfilter per lijn in. Operators <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">see documentation</a>.',	// DIRTY
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informatie',
 		'keep_min' => 'Minimum aantal artikelen om te houden',
 		'kind' => array(

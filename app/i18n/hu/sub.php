@@ -77,6 +77,7 @@ return array(
 			'_' => 'Szűrő műveletek',
 			'help' => 'Írj egy szűrőt soronként. Műveletek <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">a dokumentációban</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Információ',
 		'keep_min' => 'Megtartandó cikkek minimális száma',
 		'kind' => array(

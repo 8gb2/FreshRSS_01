@@ -72,6 +72,15 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="group-name" for="iconUser"><?= _t('sub.feed.icon') ?></label>
+				<div class="group-controls">
+					<div class="stick w100">
+						<input type="url" name="iconUser" id="iconUser" value="<?= $this->feed->iconUser() ?>" placeholder="<?= $this->feed->iconFeed(true) ?? _t('gen.short.blank_to_disable') ?>"/>
+						<a class="btn open-url" target="_blank" rel="noreferrer" href="<?= $this->feed->iconUrl() ?>" data-input="iconUser" title="<?= _t('gen.action.open_url') ?>"><?= _i('link') ?></a>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="group-name" for="category"><?= _t('sub.category') ?></label>
 				<div class="group-controls">
 					<select name="category" id="category" class="w100">

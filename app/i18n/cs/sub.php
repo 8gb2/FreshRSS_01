@@ -77,6 +77,7 @@ return array(
 			'_' => 'Akce filtrování',
 			'help' => 'Zapište jeden filtr hledání na řádek. Operátoři <a href="https://freshrss.github.io/FreshRSS/en/users/10_filter.html#with-the-search-field" target="_blank">viz dokumentace</a>.',
 		),
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informace',
 		'keep_min' => 'Minimální počet článků pro ponechání',
 		'kind' => array(
