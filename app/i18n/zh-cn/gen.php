@@ -242,6 +242,7 @@ return array(
 		'by_default' => '默认',
 		'damn' => '错误！',
 		'default_category' => '未分类',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => '否',
 		'not_applicable' => '不可用',
 		'ok' => '正常！',

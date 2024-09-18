@@ -167,6 +167,7 @@ return array(
 			'help' => 'sekundēs',
 			'number' => 'Pieteikšanās ilgums',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Piespiedu e-pasta adreses validēšana',
 		'instance-name' => 'Instances nosaukums',
 		'max-categories' => 'Maksimālais kategoriju skaits vienam lietotājam',

@@ -44,6 +44,8 @@ return array(
 	# feed if they didn’t access this URL.
 	'force_email_validation' => false,
 
+	'custom_favicon_enabled' => true,
+
 	# Allow or not visitors without login to see the articles
 	#	of the default user.
 	'allow_anonymous' => false,

@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'По умолчанию',
 		'damn' => 'О нет!',
 		'default_category' => 'Без категории',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Нет',
 		'not_applicable' => 'Недоступно',
 		'ok' => 'Отлично!',

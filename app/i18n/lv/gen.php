@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Pēc noklusējuma',
 		'damn' => 'Velns!',
 		'default_category' => 'Neklasificēts',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nē',
 		'not_applicable' => 'Nav pieejams',
 		'ok' => 'Labi!',

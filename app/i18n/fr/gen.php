@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Par défaut',
 		'damn' => 'Arf !',
 		'default_category' => 'Sans catégorie',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Non',
 		'not_applicable' => 'Non disponible',
 		'ok' => 'Ok !',

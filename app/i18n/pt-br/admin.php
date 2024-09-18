@@ -167,6 +167,7 @@ return array(
 			'help' => 'em segundos',
 			'number' => 'Manter seção ativa durante',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Força verificação do endereço de email',
 		'instance-name' => 'Nome da instância',
 		'max-categories' => 'Limite de categorias por usuário',

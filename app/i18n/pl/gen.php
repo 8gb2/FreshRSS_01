@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Domyślnie',
 		'damn' => 'Niech to!',
 		'default_category' => 'Brak kategorii',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nie',
 		'not_applicable' => 'Niedostępne',
 		'ok' => 'Okay!',	// IGNORE

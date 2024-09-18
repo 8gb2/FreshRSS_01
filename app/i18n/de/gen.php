@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'standardmäßig',
 		'damn' => 'Verdammt!',
 		'default_category' => 'Unkategorisiert',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nein',
 		'not_applicable' => 'Nicht verfügbar',
 		'ok' => 'OK!',

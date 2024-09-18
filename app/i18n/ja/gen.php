@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'デフォルト',
 		'damn' => '終了!',
 		'default_category' => '未分類',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'いいえ',
 		'not_applicable' => '利用不可能',
 		'ok' => 'OK!',

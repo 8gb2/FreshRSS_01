@@ -167,6 +167,7 @@ return array(
 			'help' => 'in seconds',	// TODO
 			'number' => 'Duration to keep logged in',	// TODO
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Force email address validation',	// TODO
 		'instance-name' => 'Instance name',	// TODO
 		'max-categories' => 'Max number of categories per user',	// TODO

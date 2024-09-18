@@ -167,6 +167,7 @@ return array(
 			'help' => '秒',
 			'number' => 'ログを残す間隔',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Eメールアドレスの検証を強制します',
 		'instance-name' => 'インスタンス名',
 		'max-categories' => '1ユーザーごとのカテゴリの最大値',

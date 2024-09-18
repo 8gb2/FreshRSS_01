@@ -167,6 +167,7 @@ return array(
 			'help' => 'v sekundách',
 			'number' => 'Trvání ponechání přihlášení',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Vynutit ověření e-mailové adresy',
 		'instance-name' => 'Název instance',
 		'max-categories' => 'Maximální počet kategorií na uživatele',

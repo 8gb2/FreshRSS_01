@@ -75,7 +75,8 @@
 				<label class="group-name" for="iconUser"><?= _t('sub.feed.icon') ?></label>
 				<div class="group-controls">
 					<div class="stick w100">
-						<input type="url" name="iconUser" id="iconUser" value="<?= $this->feed->iconUser() ?>" placeholder="<?= $this->feed->iconFeed(true) ?? _t('gen.short.blank_to_disable') ?>"/>
+						<input type="url" name="iconUser" id="iconUser" value="<?= FreshRSS_Context::systemConf()->custom_favicon_enabled ? $this->feed->iconUser() : '' ?>" <?= FreshRSS_Context::systemConf()->custom_favicon_enabled ? : 'readonly="readonly"' ?>
+							placeholder="<?= $this->feed->iconFeed(true) ?? (FreshRSS_Context::systemConf()->custom_favicon_enabled ? _t('gen.short.blank_to_disable') : _t('gen.short.disabled_here')) ?>"/>
 						<a class="btn open-url" target="_blank" rel="noreferrer" href="<?= $this->feed->iconUrl() ?>" data-input="iconUser" title="<?= _t('gen.action.open_url') ?>"><?= _i('link') ?></a>
 					</div>
 				</div>
@@ -437,15 +438,17 @@
 				$xpath = Minz_Helper::htmlspecialchars_utf8($this->feed->attributeArray('xpath') ?? []);
 			?>
 			<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.html_xpath.help') ?></p>
-			<div class="form-group">
-				<label class="group-name" for="xPathIcon"><small><?= _t('sub.feed.kind.html_xpath.xpath') ?></small><br />
-					<?= _t('sub.feed.kind.html_xpath.icon') ?></label>
-				<div class="group-controls">
-					<textarea class="valid-xpath w100" name="xPathIcon" id="xPathIcon" rows="2" cols="64" spellcheck="false"
-						data-leave-validation="<?= $xpath['feedIcon'] ?? '' ?>"><?= $xpath['feedIcon'] ?? '' ?></textarea>
-					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.html_xpath.icon.help') ?></p>
+			<?php if (FreshRSS_Context::systemConf()->custom_favicon_enabled) { ?>
+				<div class="form-group">
+					<label class="group-name" for="xPathIcon"><small><?= _t('sub.feed.kind.html_xpath.xpath') ?></small><br />
+						<?= _t('sub.feed.kind.html_xpath.icon') ?></label>
+					<div class="group-controls">
+						<textarea class="valid-xpath w100" name="xPathIcon" id="xPathIcon" rows="2" cols="64" spellcheck="false"
+							data-leave-validation="<?= $xpath['feedIcon'] ?? '' ?>"><?= $xpath['feedIcon'] ?? '' ?></textarea>
+						<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.html_xpath.icon.help') ?></p>
+					</div>
 				</div>
-			</div>
+			<?php } ?>
 			<div class="form-group">
 				<label class="group-name" for="xPathItem"><small><?= _t('sub.feed.kind.html_xpath.xpath') ?></small><br />
 					<?= _t('sub.feed.kind.html_xpath.item') ?></label>
@@ -542,14 +545,16 @@
 				$jsonSettings = Minz_Helper::htmlspecialchars_utf8($this->feed->attributeArray('json_dotnotation') ?? []);
 			?>
 			<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.json_dotnotation.help') ?></p>
-			<div class="form-group">
-				<label class="group-name" for="jsonFeedIcon"><small><?= _t('sub.feed.kind.json_dotnotation.json') ?></small><br />
-					<?= _t('sub.feed.kind.json_dotnotation.icon') ?></label>
-				<div class="group-controls">
-					<textarea class="valid-json w100" name="jsonFeedIcon" id="jsonFeedIcon" rows="2" cols="64" spellcheck="false" data-leave-validation="<?= $jsonSettings['feedIcon'] ?? '' ?>"><?= $jsonSettings['feedIcon'] ?? '' ?></textarea>
-					<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.json_dotnotation.icon.help') ?></p>
+			<?php if (FreshRSS_Context::systemConf()->custom_favicon_enabled) { ?>
+				<div class="form-group">
+					<label class="group-name" for="jsonFeedIcon"><small><?= _t('sub.feed.kind.json_dotnotation.json') ?></small><br />
+						<?= _t('sub.feed.kind.json_dotnotation.icon') ?></label>
+					<div class="group-controls">
+						<textarea class="valid-json w100" name="jsonFeedIcon" id="jsonFeedIcon" rows="2" cols="64" spellcheck="false" data-leave-validation="<?= $jsonSettings['feedIcon'] ?? '' ?>"><?= $jsonSettings['feedIcon'] ?? '' ?></textarea>
+						<p class="help"><?= _i('help') ?> <?= _t('sub.feed.kind.json_dotnotation.icon.help') ?></p>
+					</div>
 				</div>
-			</div>
+			<?php } ?>
 			<div class="form-group">
 				<label class="group-name" for="jsonItem"><small><?= _t('sub.feed.kind.json_dotnotation.json') ?></small><br />
 					<?= _t('sub.feed.kind.json_dotnotation.item') ?></label>

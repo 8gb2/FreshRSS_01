@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'By default',	// TODO
 		'damn' => 'Blast!',	// TODO
 		'default_category' => 'Uncategorized',	// TODO
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'No',	// TODO
 		'not_applicable' => 'Not available',	// TODO
 		'ok' => 'Okay!',	// TODO

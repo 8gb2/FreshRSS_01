@@ -167,6 +167,7 @@ return array(
 			'help' => 'в секундах',
 			'number' => 'Оставаться в системе на протяжении',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Обязать подтверждать адрес электронной почты',
 		'instance-name' => 'Название экземпляра',
 		'max-categories' => 'Максимальное количество категорий на пользователя',

@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'ברירת מחדל',
 		'damn' => 'הו לא!',
 		'default_category' => 'ללא קטגוריה',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'לא',	// IGNORE
 		'not_applicable' => 'Not available',	// TODO
 		'ok' => 'כן!',

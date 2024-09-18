@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Öntanımlı',
 		'damn' => 'Hay aksi!',
 		'default_category' => 'Kategorisiz',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Hayır',
 		'not_applicable' => 'Uygun değil',
 		'ok' => 'Tamam!',

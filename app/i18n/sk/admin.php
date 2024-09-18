@@ -167,6 +167,7 @@ return array(
 			'help' => 'v sekundách',
 			'number' => 'Dobra, počas ktorej ste prihlásený',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Vynútiť overenie e-mailovej adresy',
 		'instance-name' => 'Názov inštancie',
 		'max-categories' => 'Limit počtu kategórií pre používateľa',

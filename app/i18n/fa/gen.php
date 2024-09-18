@@ -242,6 +242,7 @@ return array(
 		'by_default' => ' به طور پیش فرض',
 		'damn' => ' انفجار!',
 		'default_category' => ' دسته بندی نشده',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => ' شماره',
 		'not_applicable' => ' در دسترس نیست',
 		'ok' => ' باشه!',

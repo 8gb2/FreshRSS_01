@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Výchozí',
 		'damn' => 'Sakra!',
 		'default_category' => 'Nezařazeno',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Ne',
 		'not_applicable' => 'Nedostupné',
 		'ok' => 'Dobře!',

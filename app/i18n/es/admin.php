@@ -167,6 +167,7 @@ return array(
 			'help' => 'en segundos',
 			'number' => 'Duración para mantenerse conectado',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Forzar la validación de direcciones de correo electrónico',
 		'instance-name' => 'Nombre de la fuente',
 		'max-categories' => 'Límite de categorías por usuario',

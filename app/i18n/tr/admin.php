@@ -167,6 +167,7 @@ return array(
 			'help' => 'saniye',
 			'number' => 'Oturum açık kalma süresi',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Email doğrulamasını zorunlu kıl',
 		'instance-name' => 'Örnek isim',
 		'max-categories' => 'Kullanıcı başına kategori limiti',

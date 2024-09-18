@@ -167,6 +167,7 @@ return array(
 			'help' => 'σε δευτερόλεπτα',
 			'number' => 'Διάρκεια παραμονής σε σύνδεση',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Επιβολή επιβεβαίωσης διεύθυνσης email',
 		'instance-name' => 'Instance name',	// TODO
 		'max-categories' => 'Μέγιστος αριθμός κατηγοριών ανά χρήστη',

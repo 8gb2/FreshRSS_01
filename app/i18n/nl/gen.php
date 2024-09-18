@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Door standaard',
 		'damn' => 'Potverdorie!',
 		'default_category' => 'Niet ingedeeld',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nee',
 		'not_applicable' => 'Niet aanwezig',
 		'ok' => 'Ok!',	// IGNORE

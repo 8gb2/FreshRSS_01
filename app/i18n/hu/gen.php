@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Alapértelmezés',
 		'damn' => 'A fenébe!',
 		'default_category' => 'Kategória nélküli',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nem',
 		'not_applicable' => 'Nem elérhető',
 		'ok' => 'Oké!',

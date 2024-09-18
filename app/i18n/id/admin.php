@@ -167,6 +167,7 @@ return array(
 			'help' => 'dalam hitungan detik',
 			'number' => 'Durasi untuk terus masuk',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Validasi alamat email paksa',
 		'instance-name' => 'Nama instansi',
 		'max-categories' => 'Jumlah kategori maksimal per pengguna',

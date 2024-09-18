@@ -269,7 +269,7 @@ class FreshRSS_Feed extends Minz_Model {
 		$urlAlt = $this->iconFeed;
 		$site = ($this->website != '' ? $this->website : $this->url);
 		error_log('user: ' . $this->iconUser . ' feed: ' . $this->iconFeed . ' site: ' . $this->website);
-		if ($url == '')
+		if ($url == '' || !FreshRSS_Context::systemConf()->custom_favicon_enabled)
 		{
 			$url = $this->iconFeed;
 			$urlAlt = '';

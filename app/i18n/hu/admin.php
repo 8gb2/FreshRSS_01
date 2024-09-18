@@ -167,6 +167,7 @@ return array(
 			'help' => 'másodpercekben',
 			'number' => 'Bejelentkezve maradás időtartam',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Kötelező email cím visszaigazolás',
 		'instance-name' => 'Instance név',
 		'max-categories' => 'Maximális kategóriák száma felhasználónkét',

@@ -242,6 +242,7 @@ return array(
 		'by_default' => 'Per defaut',
 		'damn' => 'Zut !',
 		'default_category' => 'Pas triat',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Non',
 		'not_applicable' => 'Pas disponible',
 		'ok' => 'Òc-ben !',

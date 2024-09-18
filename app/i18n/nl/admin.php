@@ -167,6 +167,7 @@ return array(
 			'help' => 'in seconden',
 			'number' => 'Tijdsduur om ingelogd te blijven',
 		),
+		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
 		'force_email_validation' => 'Emailadresvalidatie forceren',
 		'instance-name' => 'Voorbeeld naam',
 		'max-categories' => 'Categorielimiet per gebruiker',
