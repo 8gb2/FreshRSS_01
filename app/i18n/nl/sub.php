@@ -89,6 +89,10 @@ return array(
 					'help' => 'Voorbeeld: <code>//title</code> of een statische string: <code>"Mijn aangepaste feed"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> is een standaard querytaal voor geavanceerde gebruikers, die door FreshRSS ondersteund wordt voor web scraping.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'nieuws vinden <strong>berichten</strong><br /><small>(belangrijkste)</small>',
 					'help' => 'Voorbeeld: <code>//div[@class="nieuws-bericht"]</code>',

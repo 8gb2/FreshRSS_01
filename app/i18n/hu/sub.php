@@ -89,6 +89,10 @@ return array(
 					'help' => 'Példa: <code>//title</code> vagy statikus szöveg: <code>"Az egyedi hírforrásom"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> egy szabványos lekérdezési nyelv haladó felhasználók számára, amelyet a FreshRSS támogat a webes lemásolás engedélyezéséhez.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'hírek keresése <strong>elemek</strong><br /><small>(legfontosabb)</small>',
 					'help' => 'Példa: <code>//div[@class="news-item"]</code>',

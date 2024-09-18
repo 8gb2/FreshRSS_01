@@ -89,6 +89,10 @@ return array(
 					'help' => '如 <code>//title</code> 或是靜態字元串如 <code>"My custom feed"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> 是為資深用戶準備的標準查詢語言，FreshRSS 用以實現 Web 抓取.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '以尋找 <strong>文章</strong><br /><small>(很重要)</small>',
 					'help' => '例如 <code>//div[@class="news-item"]</code>',

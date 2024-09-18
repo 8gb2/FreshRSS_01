@@ -216,6 +216,8 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 			$feed->_kind(Minz_Request::paramInt('feed_kind') ?: FreshRSS_Feed::KIND_RSS);
 			if ($feed->kind() === FreshRSS_Feed::KIND_HTML_XPATH || $feed->kind() === FreshRSS_Feed::KIND_XML_XPATH) {
 				$xPathSettings = [];
+				if (Minz_Request::paramString('xPathIcon') != '')
+					$xPathSettings['feedIcon'] = Minz_Request::paramString('xPathIcon', true);
 				if (Minz_Request::paramString('xPathItem') != '')
 					$xPathSettings['item'] = Minz_Request::paramString('xPathItem', true);
 				if (Minz_Request::paramString('xPathItemTitle') != '')

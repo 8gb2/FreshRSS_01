@@ -89,6 +89,10 @@ return array(
 					'help' => 'Piemērs: <code>//title</code> vai statisku tekstu: <code>"Mana pielāgotā barotne"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> ir standarta vaicājumu valoda pieredzējušiem lietotājiem, ko FreshRSS atbalsta, lai nodrošinātu tīmekļa nolasīšanu.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '<strong>jaunumu</strong> meklēšana<br /><small>(vissvarīgākais)</small>',
 					'help' => 'Piemērs: <code>//div[@class="news-item"]</code>',

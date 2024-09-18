@@ -89,6 +89,10 @@ return array(
 					'help' => 'Örnek: <code>//başlık</code> ya da sabit dizgi: <code>"Benim özel akışım"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> Gelişmiş kullanıcılar için standart istek dili, FreshRSS web scrapingi aktifleştirmek için kullanıyor.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'yeni nesneler bulunuyor <strong>nesneler</strong><br /><small>(en önemli)</small>',
 					'help' => 'Örnek: <code>//div[@class="news-item"]</code>',

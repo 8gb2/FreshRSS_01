@@ -89,6 +89,10 @@ return array(
 					'help' => '例: <code>//title</code> または文字列定数: <code>"カスタムフィード"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> は上級者向けのクエリ型言語で、FreshRSSでスクレイピングをサポートしている言語です。',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'ニュース<strong>項目</strong>を探す<br /><small>(最も重要)</small>',
 					'help' => '例: <code>//div[@class="news-item"]</code>',

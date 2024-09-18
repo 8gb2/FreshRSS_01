@@ -89,6 +89,10 @@ return array(
 					'help' => 'Ejemplo: <code>//título</code> o un texto estático: <code>"Mi fuente personalizada"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> es un lenguaje de consulta estándar para usuarios avanzados, el cual FreshRSS soporta para habilitar Web scraping',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'encontrando <strong>noticias</strong> <br /><small>(más importante)</small>',
 					'help' => 'Ejemplo: <code>//div[@class="elemento-noticias"]</code>',

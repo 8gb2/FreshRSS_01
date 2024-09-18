@@ -89,6 +89,10 @@ return array(
 					'help' => 'Przykład: <code>//title</code>, lub statyczny ciąg: <code>"Mój własny kanał"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> jest standardowym językiem zapytań przeznaczonym dla zaawansowanych użytkowników. FreshRSS wykorzystuje ten język aby wydobywać (scrape’ować) dane ze stron internetowych.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'znajdowania <strong>poszczególnych</strong> wiadomości<br /><small>(najważniejsza opcja)</small>',
 					'help' => 'Przykład: <code>//div[@class="news-item"]</code>',

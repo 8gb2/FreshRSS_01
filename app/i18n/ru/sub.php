@@ -89,6 +89,10 @@ return array(
 					'help' => 'Пример: <code>//title</code> или статичная строка: <code>"Моя пользовательская лента"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> – стандартный язык запросов для опытных пользователей, который поддерживается в FreshRSS для парсинга веб-страниц.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'поиска новых <strong>элементов</strong><br /><small>(самое важное)</small>',
 					'help' => 'Пример: <code>//div[@class="news-item"]</code>',

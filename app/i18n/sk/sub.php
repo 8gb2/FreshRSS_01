@@ -89,6 +89,10 @@ return array(
 					'help' => 'Príklad: <code>//title</code> alebo statický text: <code>"Môj vlastný kanál"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> je štandardný dopytovací jazyk pre pokročilých používateľov, ktorý FreshRSS podporuje na umožnenie funkcie Web scraping.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'vyhľadávanie noviniek <strong>položky</strong><br /><small>(najdôležitejšie)</small>',
 					'help' => 'Príklad: <code>//div[@class="news-item"]</code>',

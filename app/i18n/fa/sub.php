@@ -89,6 +89,10 @@ return array(
 					'help' => ' مثال: <code>//title</code> یا یک رشته ثابت: <code>"فید سفارشی من"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> یک زبان جستجوی استاندارد برای پیشرفته است کاربران',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => ' یافتن اخبار <strong>اقلام</strong><br /><small>(مهمترین)</small>',
 					'help' => ' مثال: <code>//div[@class="news-item"]</code>',
