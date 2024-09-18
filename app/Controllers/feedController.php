@@ -909,6 +909,15 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 		return $nbUpdatedFeeds;
 	}
 
+	public static function refresh_favicon()
+	{
+		$feedsDAO = FreshRSS_Factory::createFeedDao();
+		foreach ($feedsDAO->listFeeds() as $feed)
+		{
+			$feed->faviconPrepare();
+		}
+	}
+
 	/**
 	 * @throws Minz_ConfigurationNamespaceException
 	 * @throws Minz_PDOConnectionException

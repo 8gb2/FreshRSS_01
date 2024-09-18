@@ -134,6 +134,23 @@ cd /usr/share/FreshRSS
 # Optimize database (reduces the size) for a given user (perform `OPTIMIZE TABLE` in MySQL, `VACUUM` in SQLite)
 ```
 
+### Favicon Cashe
+
+On servers with a large number of users and feeds the number of favicons stored can take up a lot of space, especially with
+the way user selected icons are handled (if enabled), these commands can be used to combat these issues.
+
+```sh
+./cli/prune-favicon-cashe.sh days
+# delete all favicons older than 'days' (defaults to 40)
+# could be used in cron to periodically clean the folder
+
+./cli/clear-favicon-cashe.sh
+# deletes all favicons
+
+./cli/refresh-favicon-cashe.php
+# deletes all favicons then regenerates the .txt files for all active users
+```
+
 ### Translation
 
 ```sh
