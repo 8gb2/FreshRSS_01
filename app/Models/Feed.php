@@ -726,6 +726,8 @@ class FreshRSS_Feed extends Minz_Model {
 	private function dotNotationForStandardJsonFeed(): array {
 		return [
 			'feedTitle' => 'title',
+			'feedIcon' => 'icon',
+			'feedFavicon' => 'favicon',
 			'item' => 'items',
 			'itemTitle' => 'title',
 			'itemContent' => 'content_text',

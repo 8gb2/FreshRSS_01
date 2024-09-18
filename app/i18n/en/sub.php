@@ -136,6 +136,10 @@ return array(
 					'help' => 'Example: <code>meta.title</code> or a static string: <code>"My custom feed"</code>',
 				),
 				'help' => 'A JSON dot notated uses dots between objects and brackets for arrays (e.g. <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'finding news <strong>items</strong><br /><small>(most important)</small>',
 					'help' => 'JSON path to the array containing the items, e.g. <code>newsItems</code>',

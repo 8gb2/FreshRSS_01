@@ -136,6 +136,10 @@ return array(
 					'help' => '예시: <code>meta.title</code> 혹은 스태틱 문자열: <code>"나만의 커스텀 피드"</code>',
 				),
 				'help' => 'JSON 점 표기법은 배열을 표기할 때 오브젝트와 괄호 사이에 점을 사용합니다. (예: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '새 뉴스 <strong>기사</strong> 찾기<br /><small>(가장 중요함)</small>',
 					'help' => '기사를 포함한 배열의 JSON 경로, 예: <code>뉴스기사</code>',

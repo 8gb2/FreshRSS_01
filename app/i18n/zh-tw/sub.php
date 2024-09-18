@@ -136,6 +136,10 @@ return array(
 					'help' => '範例: <code>meta.title</code> 或固定的字串: <code>"My custom feed"</code>',
 				),
 				'help' => 'A JSON dot notated uses dots between objects and brackets for arrays (e.g. <code>data.items[0].title</code>)',	// TODO
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '找尋新聞 <strong>項目</strong><br /><small>(最重要的)</small>',
 					'help' => 'JSON path to the array containing the items, e.g. <code>newsItems</code>',	// TODO

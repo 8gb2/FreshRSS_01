@@ -136,6 +136,10 @@ return array(
 					'help' => 'Például: <code>meta.title</code> vagy egy statikus sztring: <code>"Az egyedi hírforrásom"</code>',
 				),
 				'help' => 'A JSON pontjelölés pontokat használ az objektumok között és zárójeleket a tömbökhöz (pl. <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'hírek keresése <strong>elemek</strong><br /><small>(legfontosabb)</small>',
 					'help' => 'JSON útvonal az elemeket tartalmazó tömbhöz, pl. <code>newsItems</code>',

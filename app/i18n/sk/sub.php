@@ -136,6 +136,10 @@ return array(
 					'help' => 'Príklad: <code>meta.title</code> alebo ručne zadaná hodnota: <code>"Môj kanál"</code>',
 				),
 				'help' => 'JSON so zápisom s bodkou používa bodky na oddelenie objekov a zložené zátvorky pre polia (príklad: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'hľadajú sa <strong>položky</strong> noviniek<br /><small>(najdôležitejšie)</small>',
 					'help' => 'JSON cesta k polu obsahujúce položky, príklad: <code>newsItems</code>',

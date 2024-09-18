@@ -136,6 +136,10 @@ return array(
 					'help' => '例: <code>meta.title</code> または静的文字列: <code>"My custom feed"</code>',
 				),
 				'help' => 'JSONのドット記法は、オブジェクトの間にドットを使用し、配列には括弧を使用します。例: <code>data.items[0].title</code>',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'ニュース<strong>項目</strong>を探す<br /><small>(最重要)</small>',
 					'help' => '項目を含む配列へのJSONパス。 例: <code>newsItems</code>',

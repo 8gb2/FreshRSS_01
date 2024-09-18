@@ -136,6 +136,10 @@ return array(
 					'help' => 'Пример: <code>meta.title</code> или статический текст: <code>"Моя пользовательская лента"</code>',
 				),
 				'help' => 'JSON с точечной нотацией использует точки между объектами и квадратные скобки для массивов (например: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'Найти новые <strong>элементы</strong><br /><small>(самое важное)</small>',
 					'help' => 'JSON-путь к массиву, содержащему элементы, например: <code>newsItems</code>',

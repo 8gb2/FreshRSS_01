@@ -136,6 +136,10 @@ return array(
 					'help' => '例如: <code>meta.title</code> 或一个静态的字符串: <code>"My custom feed"</code>',
 				),
 				'help' => 'JSON 点表达式（JSON 路径）在对象之间使用点，在数组中使用中括号 (例如 <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '寻找新的 <strong>文章</strong><br /><small>(最重要的参数)</small>',
 					'help' => '包含文章数组的 JSON 路径， 例如 <code>newsItems</code>',
