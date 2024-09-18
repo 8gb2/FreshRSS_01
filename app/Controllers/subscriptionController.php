@@ -243,6 +243,9 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				if (Minz_Request::paramString('jsonFeedTitle') !== '') {
 					$jsonSettings['feedTitle'] = Minz_Request::paramString('jsonFeedTitle', true);
 				}
+				if (Minz_Request::paramString('jsonFeedIcon') !== '') {
+					$jsonSettings['feedIcon'] = Minz_Request::paramString('jsonFeedIcon', true);
+				}
 				if (Minz_Request::paramString('jsonItem') !== '') {
 					$jsonSettings['item'] = Minz_Request::paramString('jsonItem', true);
 				}
