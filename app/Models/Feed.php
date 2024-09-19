@@ -345,7 +345,7 @@ class FreshRSS_Feed extends Minz_Model {
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hash($this->iconUser));
+		return Minz_Url::display('/f.php?' . $this->hash(true));
 	}
 
 	public function _id(int $value): void {
