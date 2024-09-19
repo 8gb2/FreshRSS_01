@@ -167,7 +167,10 @@ return array(
 			'help' => '秒',
 			'number' => 'ログを残す間隔',
 		),
-		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Eメールアドレスの検証を強制します',
 		'instance-name' => 'インスタンス名',
 		'max-categories' => '1ユーザーごとのカテゴリの最大値',

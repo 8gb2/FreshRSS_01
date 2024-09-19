@@ -106,10 +106,10 @@ final class FreshRSS_dotNotation_Util
 			? (htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedTitle']) ?? '', ENT_COMPAT, 'UTF-8') ?: $defaultRssTitle)
 			: $defaultRssTitle;
 		
-		$view->image_url = isset($dotNotation['feedIcon'])
+		$view->image_url = (isset($dotNotation['feedIcon']) && ($dotNotation['feedIcon'] === 'icon' || FreshRSS_Context::systemConf()->custom_favicon_enabled))
 			? (htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedIcon']) ?? '', ENT_COMPAT, 'UTF-8') ?: '') : '';
 
-		if ($view->image_url == '' && isset($dotNotation['feedFavicon'])) {
+		if ($view->image_url == '' && isset($dotNotation['feedFavicon']) && ($dotNotation['feedFavicon'] === 'favicon' || FreshRSS_Context::systemConf()->custom_favicon_enabled)) {
 			$view->image_url = htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedFavicon']) ?? '', ENT_COMPAT, 'UTF-8') ?: '';
 		}
 

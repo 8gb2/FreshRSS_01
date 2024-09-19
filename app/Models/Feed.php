@@ -274,6 +274,9 @@ class FreshRSS_Feed extends Minz_Model {
 			$url = $this->iconFeed;
 			$urlAlt = '';
 		}
+		if (!FreshRSS_Context::systemConf()->custom_favicon_enabled && $this->kind != self::KIND_JSONFEED && $this->kind >= self::KIND_HTML_XPATH) {
+			$url = ''; //custom favicons are disabled so ignore the iconFeed in the database if feed uses XPATH or custom JSON dot notation
+		}
 		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
 		$txt = FAVICONS_DIR . $this->hash($this->iconUser) . '.txt';
 		if ($url == '') {
@@ -791,6 +794,7 @@ class FreshRSS_Feed extends Minz_Model {
 		/** @var array<string,string> $xPathSettings */
 		$xPathSettings = $this->attributeArray('xpath');
 		$xPathFeedTitle = $xPathSettings['feedTitle'] ?? '';
+		$xPathFeedIcon = $xPathSettings['feedIcon'] ?? '';
 		$xPathItem = $xPathSettings['item'] ?? '';
 		$xPathItemTitle = $xPathSettings['itemTitle'] ?? '';
 		$xPathItemContent = $xPathSettings['itemContent'] ?? '';
@@ -845,6 +849,8 @@ class FreshRSS_Feed extends Minz_Model {
 
 			$view->rss_title = $xPathFeedTitle == '' ? $this->name() :
 				htmlspecialchars($xpathEvaluateString($xPathFeedTitle), ENT_COMPAT, 'UTF-8');
+			$view->image_url = ($xPathFeedIcon == '' && FreshRSS_Context::systemConf()->custom_favicon_enabled) ? '' :
+				htmlspecialchars($xpathEvaluateString($xPathFeedIcon), ENT_COMPAT, 'UTF-8');
 			$view->rss_base = htmlspecialchars(trim($xpathEvaluateString('//base/@href')), ENT_COMPAT, 'UTF-8');
 			$nodes = $xpath->query($xPathItem);
 			if ($nodes === false || $nodes->length === 0) {

@@ -167,7 +167,10 @@ return array(
 			'help' => 'en segundos',
 			'number' => 'Duración para mantenerse conectado',
 		),
-		'custom-favicon-enabled' => 'Enable Custom Favicons',	// TODO
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Forzar la validación de direcciones de correo electrónico',
 		'instance-name' => 'Nombre de la fuente',
 		'max-categories' => 'Límite de categorías por usuario',
