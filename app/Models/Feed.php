@@ -88,11 +88,23 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->id;
 	}
 
-	public function hash(string $extra = ''): string {
+	public function hash(bool $icon = false): string {
 		$salt = FreshRSS_Context::systemConf()->salt;
-		if ($extra != '')
+		if ($icon)
 		{
-			return hash('crc32b', $salt . $this->url . $this->iconUser);
+			switch ($this->kind)
+			{
+				case self::KIND_HTML_XPATH:
+				case self::KIND_XML_XPATH:
+				case self::KIND_JSON_XPATH:
+				case self::KIND_JSON_DOTNOTATION:
+					return hash('crc32b', $salt . $this->url . $this->iconUrl());
+				case self::KIND_RSS:
+				case self::KIND_RSS_FORCED:
+				case self::KIND_JSONFEED:
+				default:
+					return hash('crc32b', $salt . $this->url . $this->iconUser);
+			}
 		}
 		if ($this->hash == '') {
 			$this->hash = hash('crc32b', $salt . $this->url);
@@ -278,7 +290,7 @@ class FreshRSS_Feed extends Minz_Model {
 			$url = ''; //custom favicons are disabled so ignore the iconFeed in the database if feed uses XPATH or custom JSON dot notation
 		}
 		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
-		$txt = FAVICONS_DIR . $this->hash($this->iconUser) . '.txt';
+		$txt = FAVICONS_DIR . $this->hash(true) . '.txt';
 		if ($url == '') {
 			$file = "3\n$url\n$urlAlt\n$site";
 		}
@@ -288,19 +300,19 @@ class FreshRSS_Feed extends Minz_Model {
 		if (file_get_contents($txt) == false) {
 			file_put_contents($txt, $file);
 		}
-		elseif (substr_compare(@file_get_contents($txt),$file,2) != 0)
+		elseif (substr_compare(@file_get_contents($txt),"$url\n$urlAlt\n$site",2) != 0)
 		{
 			file_put_contents($txt, $file);
 		}
 		if (FreshRSS_Context::$isCli) {
-			$ico = FAVICONS_DIR . $this->hash($this->iconUser) . '.ico';
+			$ico = FAVICONS_DIR . $this->hash(true) . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
 			if ($txt_mtime != false &&
 				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
 				// no ico file or we should download a new one.
 				$urls = explode("\n",file_get_contents($txt));
-				if ($urls == false ) {
+				if ($urls !== false || count($urls)!=0) {
 					$fallSite = true;
 					if ($url != '') {
 						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
@@ -320,7 +332,14 @@ class FreshRSS_Feed extends Minz_Model {
 		}
 	}
 
-	public static function faviconDelete(string $hash): void {
+	public static function faviconDelete(string | FreshRSS_Feed $src): void {
+		if (is_a($src,"string"))
+		{
+			$hash = $src;
+		}
+		else {
+			$hash = $src->hash(true);
+		}
 		$path = DATA_PATH . '/favicons/' . $hash;
 		@unlink($path . '.ico');
 		@unlink($path . '.txt');

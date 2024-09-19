@@ -115,6 +115,9 @@ function download_favicon(string $url, string $dest, bool $search = true): bool 
 	if ($search)
 	{
 		$favicon = searchFavicon($url);
+		if (!isImgMime($favicon)) {
+			error_log('download failed: ' . $url . ', searching...');
+		}
 	}
 	else {
 		$favicon = downloadHttp($url, array(CURLOPT_REFERER => $url));
