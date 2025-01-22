@@ -54,6 +54,8 @@ class FreshRSS_Feed extends Minz_Model {
 	private int $nbNotRead = -1;
 	private string $name = '';
 	private string $website = '';
+	private string $iconFeed = '';
+	private string $iconUser = '';
 	private string $description = '';
 	private int $lastUpdate = 0;
 	private int $priority = self::PRIORITY_MAIN_STREAM;
@@ -88,9 +90,25 @@ class FreshRSS_Feed extends Minz_Model {
 		return $this->id;
 	}
 
-	public function hash(): string {
+	public function hash(bool $icon = false): string {
+		$salt = FreshRSS_Context::systemConf()->salt;
+		if ($icon)
+		{
+			switch ($this->kind)
+			{
+				case self::KIND_HTML_XPATH:
+				case self::KIND_XML_XPATH:
+				case self::KIND_JSON_XPATH:
+				case self::KIND_JSON_DOTNOTATION:
+					return hash('crc32b', $salt . $this->url . $this->iconUrl());
+				case self::KIND_RSS:
+				case self::KIND_RSS_FORCED:
+				case self::KIND_JSONFEED:
+				default:
+					return hash('crc32b', $salt . $this->url . $this->iconUser);
+			}
+		}
 		if ($this->hash == '') {
-			$salt = FreshRSS_Context::systemConf()->salt;
 			$this->hash = hash('crc32b', $salt . $this->url);
 		}
 		return $this->hash;
@@ -101,6 +119,40 @@ class FreshRSS_Feed extends Minz_Model {
 	}
 	public function selfUrl(): string {
 		return $this->selfUrl;
+	}
+	public function iconUrl(bool $returnNull = false): string | null {
+		if ($this->iconUser !== '')
+		{
+			return $this->iconUser;
+		}
+		else if($this->iconFeed !== '' || !$returnNull)
+		{
+			return $this->iconFeed;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	public function iconFeed(bool $returnNull = false): string | null {
+		if ($this->iconFeed !== '' || !$returnNull)
+		{
+			return $this->iconFeed;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	public function iconUser(bool $returnNull = false): string | null {
+		if ($this->iconUser !== '' || !$returnNull)
+		{
+			return $this->iconUser;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	public function kind(): int {
 		return $this->kind;
@@ -227,36 +279,75 @@ class FreshRSS_Feed extends Minz_Model {
 
 	public function faviconPrepare(bool $force = false): void {
 		require_once(LIB_PATH . '/favicons.php');
-		$url = $this->website;
-		if ($url == '') {
-			$url = $this->url;
+		$url = $this->iconUser;
+		$urlAlt = $this->iconFeed;
+		$site = ($this->website != '' ? $this->website : $this->url);
+		error_log('user: ' . $this->iconUser . ' feed: ' . $this->iconFeed . ' site: ' . $this->website);
+		if ($url == '' || !FreshRSS_Context::systemConf()->custom_favicon_enabled)
+		{
+			$url = $this->iconFeed;
+			$urlAlt = '';
 		}
-		$txt = FAVICONS_DIR . $this->hash() . '.txt';
-		if (@file_get_contents($txt) !== $url) {
-			file_put_contents($txt, $url);
+		if (!FreshRSS_Context::systemConf()->custom_favicon_enabled && $this->kind != self::KIND_JSONFEED && $this->kind >= self::KIND_HTML_XPATH) {
+			$url = ''; //custom favicons are disabled so ignore the iconFeed in the database if feed uses XPATH or custom JSON dot notation
+		}
+		error_log("favicon: " . $url . " faviconAlt: " . $urlAlt);
+		$txt = FAVICONS_DIR . $this->hash(true) . '.txt';
+		if ($url == '') {
+			$file = "3\n$url\n$urlAlt\n$site";
+		}
+		else {
+			$file = "1\n$url\n$urlAlt\n$site";
+		}
+		if (file_get_contents($txt) == false) {
+			file_put_contents($txt, $file);
+		}
+		elseif (substr_compare(@file_get_contents($txt),"$url\n$urlAlt\n$site",2) != 0)
+		{
+			file_put_contents($txt, $file);
 		}
 		if (FreshRSS_Context::$isCli || $force) {
-			$ico = FAVICONS_DIR . $this->hash() . '.ico';
+			$ico = FAVICONS_DIR . $this->hash(true) . '.ico';
 			$ico_mtime = @filemtime($ico);
 			$txt_mtime = @filemtime($txt);
 			if ($txt_mtime != false &&
 				($ico_mtime == false || $ico_mtime < $txt_mtime || ($ico_mtime < time() - (14 * 86400)))) {
 				// no ico file or we should download a new one.
-				$url = file_get_contents($txt);
-				if ($url == false || !download_favicon($url, $ico)) {
-					touch($ico);
+				$urls = explode("\n",file_get_contents($txt));
+				if ($urls !== false || count($urls)!=0) {
+					$fallSite = true;
+					if ($url != '') {
+						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
+					}
+					if ($urlAlt != '') {
+						file_put_contents($txt, "2\n$url\n$urlAlt\n$site");
+						$fallSite = !download_favicon($urls[intval($urls[0])], $ico, false);
+					}
+					if ($fallSite) {
+						file_put_contents($txt, "3\n$url\n$urlAlt\n$site");
+						if (!download_favicon($urls[intval($urls[0])], $ico, true)) {
+							touch($ico);
+						}
+					}
 				}
 			}
 		}
 	}
 
-	public static function faviconDelete(string $hash): void {
+	public static function faviconDelete(string | FreshRSS_Feed $src): void {
+		if (is_a($src,"string"))
+		{
+			$hash = $src;
+		}
+		else {
+			$hash = $src->hash(true);
+		}
 		$path = DATA_PATH . '/favicons/' . $hash;
 		@unlink($path . '.ico');
 		@unlink($path . '.txt');
 	}
 	public function favicon(): string {
-		return Minz_Url::display('/f.php?' . $this->hash());
+		return Minz_Url::display('/f.php?' . $this->hash(true));
 	}
 
 	public function _id(int $value): void {
@@ -304,6 +395,38 @@ class FreshRSS_Feed extends Minz_Model {
 			$value = '';
 		}
 		$this->website = $value;
+	}
+	public function _iconUrl(string $valueFeed, string $valueUser, bool $validate = true): void {
+		if ($validate) {
+			$valueFeed = checkUrl($valueFeed);
+			$valueUser = checkUrl($valueUser);
+		}
+		if ($valueFeed == false) {
+			$valueFeed = '';
+		}
+		if ($valueUser == false) {
+			$valueUser = '';
+		}
+		$this->iconFeed = $valueFeed;
+		$this->iconUser = $valueUser;
+	}
+	public function _iconFeed(string $value, bool $validate = true): void {
+		if ($validate) {
+			$value = checkUrl($value);
+		}
+		if ($value == false) {
+			$value = '';
+		}
+		$this->iconFeed = $value;
+	}
+	public function _iconUser(string $value, bool $validate = true): void {
+		if ($validate) {
+			$value = checkUrl($value);
+		}
+		if ($value == false) {
+			$value = '';
+		}
+		$this->iconUser = $value;
 	}
 	public function _description(string $value): void {
 		$this->description = $value == '' ? '' : $value;
@@ -407,6 +530,10 @@ class FreshRSS_Feed extends Minz_Model {
 					}
 					if ($this->description() === '') {
 						$this->_description(html_only_entity_decode($simplePie->get_description()));
+					}
+					if ($this->iconFeed() === '') {
+						$this->_iconFeed(str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())));
+						error_log('iconurl ' . str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())));
 					}
 				} else {
 					//The case of HTTP 301 Moved Permanently
@@ -688,6 +815,8 @@ class FreshRSS_Feed extends Minz_Model {
 	private function dotNotationForStandardJsonFeed(): array {
 		return [
 			'feedTitle' => 'title',
+			'feedIcon' => 'icon',
+			'feedFavicon' => 'favicon',
 			'item' => 'items',
 			'itemTitle' => 'title',
 			'itemContent' => 'content_text',
@@ -776,6 +905,7 @@ class FreshRSS_Feed extends Minz_Model {
 		/** @var array<string,string> $xPathSettings */
 		$xPathSettings = $this->attributeArray('xpath');
 		$xPathFeedTitle = $xPathSettings['feedTitle'] ?? '';
+		$xPathFeedIcon = $xPathSettings['feedIcon'] ?? '';
 		$xPathItem = $xPathSettings['item'] ?? '';
 		$xPathItemTitle = $xPathSettings['itemTitle'] ?? '';
 		$xPathItemContent = $xPathSettings['itemContent'] ?? '';
@@ -830,6 +960,8 @@ class FreshRSS_Feed extends Minz_Model {
 
 			$view->rss_title = $xPathFeedTitle == '' ? $this->name() :
 				htmlspecialchars($xpathEvaluateString($xPathFeedTitle), ENT_COMPAT, 'UTF-8');
+			$view->image_url = ($xPathFeedIcon == '' && FreshRSS_Context::systemConf()->custom_favicon_enabled) ? '' :
+				htmlspecialchars($xpathEvaluateString($xPathFeedIcon), ENT_COMPAT, 'UTF-8');
 			$view->rss_base = htmlspecialchars(trim($xpathEvaluateString('//base/@href')), ENT_COMPAT, 'UTF-8');
 			$nodes = $xpath->query($xPathItem);
 			if ($nodes === false || $nodes->length === 0) {

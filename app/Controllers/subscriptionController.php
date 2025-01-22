@@ -236,6 +236,8 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 			$feed->_kind(Minz_Request::paramInt('feed_kind') ?: FreshRSS_Feed::KIND_RSS);
 			if ($feed->kind() === FreshRSS_Feed::KIND_HTML_XPATH || $feed->kind() === FreshRSS_Feed::KIND_XML_XPATH) {
 				$xPathSettings = [];
+				if (Minz_Request::paramString('xPathIcon') != '')
+					$xPathSettings['feedIcon'] = Minz_Request::paramString('xPathIcon', true);
 				if (Minz_Request::paramString('xPathItem') != '')
 					$xPathSettings['item'] = Minz_Request::paramString('xPathItem', true);
 				if (Minz_Request::paramString('xPathItemTitle') != '')
@@ -262,6 +264,9 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				$jsonSettings = [];
 				if (Minz_Request::paramString('jsonFeedTitle') !== '') {
 					$jsonSettings['feedTitle'] = Minz_Request::paramString('jsonFeedTitle', true);
+				}
+				if (Minz_Request::paramString('jsonFeedIcon') !== '') {
+					$jsonSettings['feedIcon'] = Minz_Request::paramString('jsonFeedIcon', true);
 				}
 				if (Minz_Request::paramString('jsonItem') !== '') {
 					$jsonSettings['item'] = Minz_Request::paramString('jsonItem', true);
@@ -312,6 +317,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				'description' => sanitizeHTML(Minz_Request::paramString('description', true)),
 				'website' => checkUrl(Minz_Request::paramString('website')) ?: '',
 				'url' => checkUrl(Minz_Request::paramString('url')) ?: '',
+				'iconUser' => checkUrl(Minz_Request::paramString('iconUser')) ?: '',
 				'category' => Minz_Request::paramInt('category'),
 				'pathEntries' => Minz_Request::paramString('path_entries'),
 				'priority' => Minz_Request::paramTernary('priority') === null ? FreshRSS_Feed::PRIORITY_MAIN_STREAM : Minz_Request::paramInt('priority'),
@@ -345,6 +351,7 @@ class FreshRSS_subscription_Controller extends FreshRSS_ActionController {
 				// update url and website values for faviconPrepare
 				$feed->_url($values['url'], false);
 				$feed->_website($values['website'], false);
+				$feed->_iconUser($values['iconUser'], false);
 				$feed->faviconPrepare();
 
 				Minz_Request::good(_t('feedback.sub.feed.updated'), $url_redirect);

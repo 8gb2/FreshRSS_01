@@ -169,6 +169,10 @@ return array(
 			'help' => '單位（秒）',
 			'number' => '保持登錄的時長',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => '強制驗證郵箱地址',
 		'instance-name' => '實例名稱',
 		'max-categories' => '各使用者分類數限制',

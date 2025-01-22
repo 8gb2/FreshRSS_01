@@ -169,6 +169,10 @@ return array(
 			'help' => 'saniye',
 			'number' => 'Oturum açık kalma süresi',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Email doğrulamasını zorunlu kıl',
 		'instance-name' => 'Örnek isim',
 		'max-categories' => 'Kullanıcı başına kategori limiti',

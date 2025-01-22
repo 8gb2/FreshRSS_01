@@ -106,6 +106,13 @@ final class FreshRSS_dotNotation_Util
 		$view->rss_title = isset($dotNotation['feedTitle'])
 			? (htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedTitle']) ?? '', ENT_COMPAT, 'UTF-8') ?: $defaultRssTitle)
 			: $defaultRssTitle;
+		
+		$view->image_url = (isset($dotNotation['feedIcon']) && ($dotNotation['feedIcon'] === 'icon' || FreshRSS_Context::systemConf()->custom_favicon_enabled))
+			? (htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedIcon']) ?? '', ENT_COMPAT, 'UTF-8') ?: '') : '';
+
+		if ($view->image_url == '' && isset($dotNotation['feedFavicon']) && ($dotNotation['feedFavicon'] === 'favicon' || FreshRSS_Context::systemConf()->custom_favicon_enabled)) {
+			$view->image_url = htmlspecialchars(FreshRSS_dotNotation_Util::getString($jf, $dotNotation['feedFavicon']) ?? '', ENT_COMPAT, 'UTF-8') ?: '';
+		}
 
 		$jsonItems = FreshRSS_dotNotation_Util::get($jf, $dotNotation['item']);
 		if (!is_array($jsonItems) || count($jsonItems) === 0) {
@@ -190,6 +197,8 @@ final class FreshRSS_dotNotation_Util
 				$view->entries[] = FreshRSS_Entry::fromArray($rssItem);
 			}
 		}
+
+		error_log($view->renderToString());
 
 		return $view->renderToString();
 	}

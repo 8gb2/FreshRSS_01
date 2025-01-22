@@ -169,6 +169,10 @@ return array(
 			'help' => 'σε δευτερόλεπτα',
 			'number' => 'Διάρκεια παραμονής σε σύνδεση',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Επιβολή επιβεβαίωσης διεύθυνσης email',
 		'instance-name' => 'Instance name',	// TODO
 		'max-categories' => 'Μέγιστος αριθμός κατηγοριών ανά χρήστη',

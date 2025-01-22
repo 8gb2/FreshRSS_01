@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => '정보',
 		'keep_min' => '최소 유지 글 개수',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => '예제: <code>//title</code> 혹은 정적 문자열: <code>"나의 커스텀 피드"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> 는 고급 사용자를 위한 표준 쿼리 언어입니다. FreshRSS는 웹 스크래핑 지원을 위해 이를 사용합니다.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '뉴스 <strong>기사</strong><br /><small>(가장 중요한 항목)</small>',
 					'help' => '예제: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => '예시: <code>meta.title</code> 혹은 스태틱 문자열: <code>"나만의 커스텀 피드"</code>',
 				),
 				'help' => 'JSON 점 표기법은 배열을 표기할 때 오브젝트와 괄호 사이에 점을 사용합니다. (예: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '새 뉴스 <strong>기사</strong> 찾기<br /><small>(가장 중요함)</small>',
 					'help' => '기사를 포함한 배열의 JSON 경로, 예: <code>뉴스기사</code>',

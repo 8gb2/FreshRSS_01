@@ -169,6 +169,10 @@ return array(
 			'help' => ' در ثانیه',
 			'number' => ' مدت زمان ورود به سیستم',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => ' اعتبارسنجی آدرس ایمیل اجباری',
 		'instance-name' => ' نام نمونه',
 		'max-categories' => ' حداکثر تعداد دسته ها برای هر کاربر',

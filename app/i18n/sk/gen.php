@@ -248,6 +248,7 @@ return array(
 		'by_default' => 'Prednastavené',
 		'damn' => 'Sakra!',
 		'default_category' => 'Bez kategórie',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'Nie',
 		'not_applicable' => 'Nie je k dispozícii',
 		'ok' => 'OK',

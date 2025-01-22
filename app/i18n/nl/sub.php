@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informatie',
 		'keep_min' => 'Minimum aantal artikelen om te houden',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Voorbeeld: <code>//title</code> of een statische string: <code>"Mijn aangepaste feed"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> is een standaard querytaal voor geavanceerde gebruikers, die door FreshRSS ondersteund wordt voor web scraping.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'nieuws vinden <strong>berichten</strong><br /><small>(belangrijkste)</small>',
 					'help' => 'Voorbeeld: <code>//div[@class="nieuws-bericht"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Voorbeeld: <code>meta.titel</code> of een statische reeks tekst: <code>"Mijn aangepaste feed"</code>',
 				),
 				'help' => 'JSON-puntnotatie gebruikt punten tussen objecten en vierkante haakjes voor arrays (bv. <code>data.items[0].titel</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'nieuws-<strong>items</strong> vinden<br /><small>(het belangrijkst)</small>',
 					'help' => 'JSON-puntnotatiepad naar de array met de items, bv. <code>nieuwsItems</code>',

@@ -169,6 +169,10 @@ return array(
 			'help' => 'másodpercekben',
 			'number' => 'Bejelentkezve maradás időtartam',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Kötelező email cím visszaigazolás',
 		'instance-name' => 'Instance név',
 		'max-categories' => 'Maximális kategóriák száma felhasználónkét',

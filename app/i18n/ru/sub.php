@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Информация',
 		'keep_min' => 'Оставлять статей не менее',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Пример: <code>//title</code> или статичная строка: <code>"Моя пользовательская лента"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> – стандартный язык запросов для опытных пользователей, который поддерживается в FreshRSS для парсинга веб-страниц.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'поиска новых <strong>элементов</strong><br /><small>(самое важное)</small>',
 					'help' => 'Пример: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Пример: <code>meta.title</code> или статический текст: <code>"Моя пользовательская лента"</code>',
 				),
 				'help' => 'JSON с точечной нотацией использует точки между объектами и квадратные скобки для массивов (например: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'Найти новые <strong>элементы</strong><br /><small>(самое важное)</small>',
 					'help' => 'JSON-путь к массиву, содержащему элементы, например: <code>$</code> or <code>newsItems</code>',	// DIRTY

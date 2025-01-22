@@ -41,6 +41,7 @@ function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 		if ($feed->kind() === FreshRSS_Feed::KIND_HTML_XPATH || $feed->kind() === FreshRSS_Feed::KIND_XML_XPATH) {
 			/** @var array<string,string> */
 			$xPathSettings = $feed->attributeArray('xpath') ?? [];
+			$outline['frss:xPathIcon'] = $xPathSettings['feedIcon'] ?? null;
 			$outline['frss:xPathItem'] = $xPathSettings['item'] ?? null;
 			$outline['frss:xPathItemTitle'] = $xPathSettings['itemTitle'] ?? null;
 			$outline['frss:xPathItemContent'] = $xPathSettings['itemContent'] ?? null;
@@ -54,6 +55,7 @@ function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 		} elseif ($feed->kind() === FreshRSS_Feed::KIND_JSON_DOTNOTATION || $feed->kind() === FreshRSS_Feed::KIND_HTML_XPATH_JSON_DOTNOTATION) {
 			/** @var array<string,string> */
 			$jsonSettings = $feed->attributeArray('json_dotnotation') ?? [];
+			$outline['frss:jsonIcon'] = $jsonSettings['feedIcon'] ?? null;
 			$outline['frss:jsonItem'] = $jsonSettings['item'] ?? null;
 			$outline['frss:jsonItemTitle'] = $jsonSettings['itemTitle'] ?? null;
 			$outline['frss:jsonItemContent'] = $jsonSettings['itemContent'] ?? null;
@@ -76,6 +78,10 @@ function feedsToOutlines(array $feeds, bool $excludeMutedFeeds = false): array {
 			}
 			$filters = trim($filters);
 			$outline['frss:filtersActionRead'] = $filters;
+		}
+
+		if ($feed->iconUser() != '') {
+			$outline['frss:feedUserIcon'] = $feed->iconUser();
 		}
 
 		if ($feed->pathEntries() != '') {

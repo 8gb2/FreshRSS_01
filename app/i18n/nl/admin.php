@@ -169,6 +169,10 @@ return array(
 			'help' => 'in seconden',
 			'number' => 'Tijdsduur om ingelogd te blijven',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Emailadresvalidatie forceren',
 		'instance-name' => 'Voorbeeld naam',
 		'max-categories' => 'Categorielimiet per gebruiker',

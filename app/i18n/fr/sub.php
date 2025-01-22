@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'Entêtes HTTP',
 		'http_headers_help' => 'Un entête HTTP par ligne, avec le nom et la valeur séparés par un deux-points (ex. : <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informations',
 		'keep_min' => 'Nombre minimum d’articles à conserver',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Exemple : <code>//title</code> ou un texte statique : <code>"Mon flux personnalisé"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> est un langage de requête pour les utilisateurs avancés, supporté par FreshRSS pour le moissonnage du Web (Web scraping).',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'trouver les <strong>articles</strong><br /><small>(c’est le plus important)</small>',
 					'help' => 'Exemple : <code>//div[@class="article"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Exemple : <code>meta.title</code> ou un texte statique : <code>"Mon flux personnalisé"</code>',
 				),
 				'help' => 'La notation point pour JSON utilise le point comme séparateur objet, et des crochets pour un tableau : (ex : <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'trouver les <strong>articles</strong><br /><small>(c’est le plus important)</small>',
 					'help' => 'Chemin vers le tableau contenant les articles, par exemple <code>$</code> ou <code>newsItems</code>',

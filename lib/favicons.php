@@ -114,9 +114,22 @@ function searchFavicon(string &$url): string {
 	return '';
 }
 
-function download_favicon(string $url, string $dest): bool {
+function download_favicon(string $url, string $dest, bool $search = true): bool {
 	$url = trim($url);
-	$favicon = searchFavicon($url);
+	if ($search)
+	{
+		$favicon = searchFavicon($url);
+		if (!isImgMime($favicon)) {
+			error_log('download failed: ' . $url . ', searching...');
+		}
+	}
+	else {
+		$favicon = downloadHttp($url, array(CURLOPT_REFERER => $url));
+		if (!isImgMime($favicon)) {
+			error_log('download failed: ' . $url);
+			return false;
+		}
+	}
 	if ($favicon == '') {
 		$rootUrl = preg_replace('%^(https?://[^/]+).*$%i', '$1/', $url) ?? $url;
 		if ($rootUrl != $url) {

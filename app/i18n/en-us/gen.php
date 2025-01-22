@@ -248,6 +248,7 @@ return array(
 		'by_default' => 'By default',	// IGNORE
 		'damn' => 'Blast!',	// IGNORE
 		'default_category' => 'Uncategorized',	// IGNORE
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'No',	// IGNORE
 		'not_applicable' => 'Not available',	// IGNORE
 		'ok' => 'Okay!',	// IGNORE

@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => '信息',
 		'keep_min' => '至少保存的文章數',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => '如 <code>//title</code> 或是靜態字元串如 <code>"My custom feed"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> 是為資深用戶準備的標準查詢語言，FreshRSS 用以實現 Web 抓取.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '以尋找 <strong>文章</strong><br /><small>(很重要)</small>',
 					'help' => '例如 <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => '範例: <code>meta.title</code> 或固定的字串: <code>"My custom feed"</code>',
 				),
 				'help' => 'A JSON dot notated uses dots between objects and brackets for arrays (e.g. <code>data.items[0].title</code>)',	// TODO
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '找尋新聞 <strong>項目</strong><br /><small>(最重要的)</small>',
 					'help' => 'JSON path to the array containing the items, e.g. <code>$</code> or <code>newsItems</code>',	// TODO

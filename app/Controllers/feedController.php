@@ -727,6 +727,13 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 						$feedProperties['description'] = $feed->description();
 					}
 				}
+				if (trim($feed->iconFeed()) === '' || trim($feed->iconFeed()) !== trim(str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url())))) {
+					$icon = str_replace('&amp;','&',html_only_entity_decode($simplePie->get_image_url()));
+					if ($icon !== '' && $icon !== null) {
+						$feed->_iconFeed($icon);
+						$feedProperties['iconFeed'] = $feed->iconFeed();
+					}
+				}
 			}
 			if (!empty($feedProperties) || $feedIsNew) {
 				$feedProperties['attributes'] = $feed->attributes();
@@ -923,6 +930,15 @@ class FreshRSS_feed_Controller extends FreshRSS_ActionController {
 			Minz_Request::good(_t('feedback.sub.feed.no_refresh'), []);
 		}
 		return $nbUpdatedFeeds;
+	}
+
+	public static function refresh_favicon()
+	{
+		$feedsDAO = FreshRSS_Factory::createFeedDao();
+		foreach ($feedsDAO->listFeeds() as $feed)
+		{
+			$feed->faviconPrepare();
+		}
 	}
 
 	/**

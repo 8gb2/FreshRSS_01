@@ -169,6 +169,10 @@ return array(
 			'help' => 'en segondas',
 			'number' => 'Durada de téner d’ésser connectat',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Forçar la validacion de las adreças electronicas',
 		'instance-name' => 'Nom de l’instància',
 		'max-categories' => 'Limita de categoria per utilizaire',

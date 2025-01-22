@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Başlıkları (Headers)',
 		'http_headers_help' => 'Başlıklar yeni bir satırla ayrılır ve başlığın adı ve değeri iki nokta üst üste ile ayrılır (örneğin: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',
+		'icon' => 'Icon',	// TODO
 		'information' => 'Bilgi',
 		'keep_min' => 'En az tutulacak makale sayısı',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Örnek: <code>//başlık</code> ya da sabit dizgi: <code>"Benim özel akışım"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> Gelişmiş kullanıcılar için standart istek dili, FreshRSS web scrapingi aktifleştirmek için kullanıyor.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'yeni nesneler bulunuyor <strong>nesneler</strong><br /><small>(en önemli)</small>',
 					'help' => 'Örnek: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Örnek: <code>meta.title</code> ya da sabit bir dizgi: <code>"Benim özel akışım"</code>',
 				),
 				'help' => 'JSON noktalı gösterimi, nesneler arasında noktalar ve diziler için köşeli parantezler kullanır (örneğin: <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'yeni akışlar bulunuyor <strong>çğeler</strong><br /><small>(en önemli)</small>',
 					'help' => 'Öğeleri içeren dizinin JSON yolu, e.g. <code>yeniAkışÖğeleri</code>',

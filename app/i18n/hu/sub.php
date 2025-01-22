@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Információ',
 		'keep_min' => 'Megtartandó cikkek minimális száma',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Példa: <code>//title</code> vagy statikus szöveg: <code>"Az egyedi hírforrásom"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> egy szabványos lekérdezési nyelv haladó felhasználók számára, amelyet a FreshRSS támogat a webes lemásolás engedélyezéséhez.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'hírek keresése <strong>elemek</strong><br /><small>(legfontosabb)</small>',
 					'help' => 'Példa: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Például: <code>meta.title</code> vagy egy statikus sztring: <code>"Az egyedi hírforrásom"</code>',
 				),
 				'help' => 'A JSON pontjelölés pontokat használ az objektumok között és zárójeleket a tömbökhöz (pl. <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'hírek keresése <strong>elemek</strong><br /><small>(legfontosabb)</small>',
 					'help' => 'JSON útvonal az elemeket tartalmazó tömbhöz, pl. <code>$</code> or <code>newsItems</code>',	// DIRTY

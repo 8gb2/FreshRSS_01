@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informācija',
 		'keep_min' => 'Minimālais saglabājamo izstrādājumu skaits',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Piemērs: <code>//title</code> vai statisku tekstu: <code>"Mana pielāgotā barotne"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> ir standarta vaicājumu valoda pieredzējušiem lietotājiem, ko FreshRSS atbalsta, lai nodrošinātu tīmekļa nolasīšanu.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => '<strong>jaunumu</strong> meklēšana<br /><small>(vissvarīgākais)</small>',
 					'help' => 'Piemērs: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Example: <code>meta.title</code> or a static string: <code>"My custom feed"</code>',	// TODO
 				),
 				'help' => 'A JSON dot notated uses dots between objects and brackets for arrays (e.g. <code>data.items[0].title</code>)',	// TODO
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'finding news <strong>items</strong><br /><small>(most important)</small>',	// TODO
 					'help' => 'JSON path to the array containing the items, e.g. <code>$</code> or <code>newsItems</code>',	// TODO

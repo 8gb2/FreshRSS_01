@@ -176,6 +176,10 @@ class FreshRSS_Import_Service {
 					break;
 			}
 
+			if (isset($feed_elt['frss:feedUserIcon'])) {
+				$feed->_iconUser($feed_elt['frss:feedUserIcon']);
+			}
+
 			if (isset($feed_elt['frss:cssFullContent'])) {
 				$feed->_pathEntries(Minz_Helper::htmlspecialchars_utf8($feed_elt['frss:cssFullContent']));
 			}
@@ -199,6 +203,9 @@ class FreshRSS_Import_Service {
 			}
 
 			$xPathSettings = [];
+			if (isset($feed_elt['frss:xPathIcon'])) {
+				$xPathSettings['feedIcon'] = $feed_elt['frss:xPathIcon'];
+			}
 			if (isset($feed_elt['frss:xPathItem'])) {
 				$xPathSettings['item'] = $feed_elt['frss:xPathItem'];
 			}
@@ -234,6 +241,9 @@ class FreshRSS_Import_Service {
 			}
 
 			$jsonSettings = [];
+			if (isset($feed_elt['frss:jsonIcon'])) {
+				$jsonSettings['feedIcon'] = $feed_elt['frss:jsonIcon'];
+			}
 			if (isset($feed_elt['frss:jsonItem'])) {
 				$jsonSettings['item'] = $feed_elt['frss:jsonItem'];
 			}

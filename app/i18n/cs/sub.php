@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informace',
 		'keep_min' => 'Minimální počet článků pro ponechání',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Příklad: <code>//title</code> nebo statický řetězec: <code>"Můj vlastní zdroj"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn> je standardní dotazovací jazyk pro pokročilé uživatele, který FreshRSS podporuje, aby umožnil Web scraping.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'vyhledávání <strong>novinek</strong><br /><small>(nejdůležitější)</small>',
 					'help' => 'Příklad: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Příklad: <code>meta.title</code> nebo statický řetězec: <code>"Můj vlastní kanál"</code>',
 				),
 				'help' => 'JSON s tečkovým zápisem používá tečky mezi objekty a závorky pro pole. (e.g. <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'vyhledávání nových <strong>položek</strong><br /><small>(nejdůležitější)</small>',
 					'help' => 'JSON cesta k poli obsahujícímu položky, např.: <code>$</code> or <code>newsItems</code>',	// DIRTY

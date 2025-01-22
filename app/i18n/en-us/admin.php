@@ -169,6 +169,10 @@ return array(
 			'help' => 'in seconds',	// IGNORE
 			'number' => 'Duration to keep logged in',	// IGNORE
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Force email address validation',	// IGNORE
 		'instance-name' => 'Instance name',	// IGNORE
 		'max-categories' => 'Max number of categories per user',	// IGNORE

@@ -80,6 +80,7 @@ return array(
 		),
 		'http_headers' => 'HTTP Headers',	// TODO
 		'http_headers_help' => 'Headers are separated by a newline, and the name and value of a header are separated by a colon (e.g: <kbd><code>Accept: application/atom+xml<br />Authorization: Bearer some-token</code></kbd>).',	// TODO
+		'icon' => 'Icon',	// TODO
 		'information' => 'Informações',
 		'keep_min' => 'Número mínimo de artigos para manter',
 		'kind' => array(
@@ -98,6 +99,10 @@ return array(
 					'help' => 'Exemplo: <code>//title</code> ou uma string estática: <code>"Meu feed customizado"</code>',
 				),
 				'help' => '<dfn><a href="https://www.w3.org/TR/xpath-10/" target="_blank">XPath 1.0</a></dfn>é uma linguagem de consulta padrão para usuários avançados e que o FreshRSS suporta para habilitar o Web scraping.',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'encontrar notícias <strong>items</strong><br /><small>(mais importantes)</small>',
 					'help' => 'Exemplo: <code>//div[@class="news-item"]</code>',
@@ -145,6 +150,10 @@ return array(
 					'help' => 'Exemplo: <code>meta.title</code> ou uma string estática: <code>"Meu feed customizado"</code>',
 				),
 				'help' => 'Um JSON na notação de ponto usa pontos entre os objetos e colchetes para arrays (e.g. <code>data.items[0].title</code>)',
+				'icon' => array(
+					'_' => 'the feed\'s favicon',	// TODO
+					'help' => 'The path to the Feed\'s Icon (optional)',	// TODO
+				),
 				'item' => array(
 					'_' => 'encontrando novidades <strong>itens</strong><br /><small>(mais importante)</small>',
 					'help' => 'Caminho do JSON para o array contendo os itens, e.g. <code>$</code> or <code>newsItems</code>',	// DIRTY

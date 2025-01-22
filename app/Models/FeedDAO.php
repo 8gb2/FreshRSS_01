@@ -35,11 +35,11 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 
 	/**
 	 * @param array{url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string|array<string|mixed>} $valuesTmp
+	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string|array<string|mixed>,iconFeed:string,iconUser:string} $valuesTmp
 	 */
 	public function addFeed(array $valuesTmp): int|false {
-		$sql = 'INSERT INTO `_feed` (url, kind, category, name, website, description, `lastUpdate`, priority, `pathEntries`, `httpAuth`, error, ttl, attributes)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO `_feed` (url, kind, category, name, website, description, `lastUpdate`, priority, `pathEntries`, `httpAuth`, error, ttl, attributes, `iconFeed`, `iconUser`)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$stm = $this->pdo->prepare($sql);
 
 		$valuesTmp['url'] = safe_ascii($valuesTmp['url']);
@@ -65,6 +65,8 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 			isset($valuesTmp['error']) ? (int)$valuesTmp['error'] : 0,
 			isset($valuesTmp['ttl']) ? (int)$valuesTmp['ttl'] : FreshRSS_Feed::TTL_DEFAULT,
 			is_string($valuesTmp['attributes']) ? $valuesTmp['attributes'] : json_encode($valuesTmp['attributes'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+			$valuesTmp['iconFeed'],
+			$valuesTmp['iconUser'],
 		];
 
 		if ($stm !== false && $stm->execute($values)) {
@@ -92,6 +94,8 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 				'category' => $feed->categoryId(),
 				'name' => $feed->name(true),
 				'website' => $feed->website(),
+				'iconFeed' => $feed->iconFeed(),
+				'iconUser' => $feed->iconUser(),
 				'description' => $feed->description(),
 				'lastUpdate' => 0,
 				'error' => false,
@@ -152,6 +156,12 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 		}
 		if (isset($valuesTmp['website'])) {
 			$valuesTmp['website'] = safe_ascii($valuesTmp['website']);
+		}
+		if (isset($valuesTmp['iconFeed'])) {
+			$valuesTmp['iconFeed'] = safe_ascii($valuesTmp['iconFeed']);
+		}
+		if (isset($valuesTmp['iconUser'])) {
+			$valuesTmp['iconUser'] = safe_ascii($valuesTmp['iconUser']);
 		}
 
 		$set = '';
@@ -293,18 +303,18 @@ class FreshRSS_FeedDAO extends Minz_ModelPdo {
 	}
 
 	/** @return Traversable<array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string}> */
+	 * 	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string,iconFeed:string,iconUser:string}> */
 	public function selectAll(): Traversable {
 		$sql = <<<'SQL'
 SELECT id, url, kind, category, name, website, description, `lastUpdate`,
-	priority, `pathEntries`, `httpAuth`, error, ttl, attributes
+	priority, `pathEntries`, `httpAuth`, error, ttl, attributes, `iconFeed`, `iconUser`
 FROM `_feed`
 SQL;
 		$stm = $this->pdo->query($sql);
 		if ($stm !== false) {
 			while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 				/** @var array{id:int,url:string,kind:int,category:int,name:string,website:string,description:string,lastUpdate:int,priority?:int,
-				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string} $row */
+				 *	pathEntries?:string,httpAuth:string,error:int|bool,ttl?:int,attributes?:string,iconFeed:string,iconUser:string} $row */
 				yield $row;
 			}
 		} else {
@@ -374,7 +384,7 @@ SQL;
 	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 */
 	public function listFeedsOrderUpdate(int $defaultCacheDuration = 3600, int $limit = 0): array {
-		$sql = 'SELECT id, url, kind, category, name, website, `lastUpdate`, `pathEntries`, `httpAuth`, ttl, attributes, `cache_nbEntries`, `cache_nbUnreads` '
+		$sql = 'SELECT id, url, kind, category, name, website, `lastUpdate`, `pathEntries`, `httpAuth`, ttl, attributes, `cache_nbEntries`, `cache_nbUnreads`, `iconFeed`, `iconUser` '
 			. 'FROM `_feed` '
 			. ($defaultCacheDuration < 0 ? '' : 'WHERE ttl >= ' . FreshRSS_Feed::TTL_DEFAULT
 				. ' AND `lastUpdate` < (' . (time() + 60)
@@ -565,7 +575,7 @@ SQL;
 	}
 
 	/**
-	 * @param array<array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,description?:string,lastUpdate?:int,priority?:int,
+	 * @param array<array{id?:int,url?:string,kind?:int,category?:int,name?:string,website?:string,iconFeed:string,iconUser:string,description?:string,lastUpdate?:int,priority?:int,
 	 * 	pathEntries?:string,httpAuth?:string,error?:int|bool,ttl?:int,attributes?:string,cache_nbUnreads?:int,cache_nbEntries?:int}> $listDAO
 	 * @return array<int,FreshRSS_Feed> where the key is the feed ID
 	 */
@@ -587,6 +597,7 @@ SQL;
 			$myFeed->_categoryId($category);
 			$myFeed->_name($dao['name']);
 			$myFeed->_website($dao['website'] ?? '', false);
+			$myFeed->_iconUrl($dao['iconFeed'] ?? '', $dao['iconUser'] ?? '', false);
 			$myFeed->_description($dao['description'] ?? '');
 			$myFeed->_lastUpdate($dao['lastUpdate'] ?? 0);
 			$myFeed->_priority($dao['priority'] ?? 10);

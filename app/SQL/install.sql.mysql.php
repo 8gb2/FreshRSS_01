@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `_feed` (
 	`category` INT DEFAULT 0,	-- 1.20.0
 	`name` VARCHAR(191) NOT NULL,
 	`website` TEXT CHARACTER SET latin1 COLLATE latin1_bin,
+	`iconFeed` TEXT CHARACTER SET latin1 COLLATE latin1_bin,  -- 1.25.0
+	`iconUser` TEXT CHARACTER SET latin1 COLLATE latin1_bin,  -- 1.25.0
 	`description` TEXT,
 	`lastUpdate` BIGINT DEFAULT 0,
 	`priority` TINYINT(2) NOT NULL DEFAULT 10,
@@ -128,6 +130,8 @@ BEGIN
 	IF up_to_date = 0 THEN
 		ALTER TABLE `_feed`
 			MODIFY COLUMN `website` TEXT CHARACTER SET latin1 COLLATE latin1_bin,
+			MODIFY COLUMN `iconFeed` TEXT CHARACTER SET latin1 COLLATE latin1_bin,
+			MODIFY COLUMN `iconUser` TEXT CHARACTER SET latin1 COLLATE latin1_bin,
 			MODIFY COLUMN `lastUpdate` BIGINT DEFAULT 0,
 			MODIFY COLUMN `pathEntries` VARCHAR(4096),
 			MODIFY COLUMN `httpAuth` VARCHAR(1024) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL;

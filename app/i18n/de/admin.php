@@ -169,6 +169,10 @@ return array(
 			'help' => 'in Sekunden',
 			'number' => 'Eingeloggt bleiben für',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'E-Mail Adressvalidierung erzwingen',
 		'instance-name' => 'Bezeichnung',
 		'max-categories' => 'Anzahl erlaubter Kategorien pro Benutzer',

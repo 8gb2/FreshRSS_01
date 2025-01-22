@@ -248,6 +248,7 @@ return array(
 		'by_default' => 'By default',
 		'damn' => 'Blast!',
 		'default_category' => 'Uncategorized',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'No',
 		'not_applicable' => 'Not available',
 		'ok' => 'Okay!',

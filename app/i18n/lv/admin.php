@@ -169,6 +169,10 @@ return array(
 			'help' => 'sekundēs',
 			'number' => 'Pieteikšanās ilgums',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Piespiedu e-pasta adreses validēšana',
 		'instance-name' => 'Instances nosaukums',
 		'max-categories' => 'Maksimālais kategoriju skaits vienam lietotājam',

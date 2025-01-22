@@ -169,6 +169,10 @@ return array(
 			'help' => 'w sekundach',
 			'number' => 'Czas przez który użytkownik pozostanie zalogowany',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Wymuś weryfikację adresu e-mail',
 		'instance-name' => 'Nazwa instancji',
 		'max-categories' => 'Maksymalna liczba kategorii na użytkownika',

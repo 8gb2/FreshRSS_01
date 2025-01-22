@@ -169,6 +169,10 @@ return array(
 			'help' => 'em segundos',
 			'number' => 'Manter seção ativa durante',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Força verificação do endereço de email',
 		'instance-name' => 'Nome da instância',
 		'max-categories' => 'Limite de categorias por usuário',

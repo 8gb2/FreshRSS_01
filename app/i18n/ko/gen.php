@@ -248,6 +248,7 @@ return array(
 		'by_default' => '기본값',
 		'damn' => '이런!',
 		'default_category' => '분류 없음',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => '아니요',
 		'not_applicable' => '사용할 수 없음',
 		'ok' => '좋습니다!',

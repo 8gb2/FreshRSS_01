@@ -248,6 +248,7 @@ return array(
 		'by_default' => 'Por defecto',
 		'damn' => '¡Córcholis!',
 		'default_category' => 'Sin categorizar',
+		'disabled_here' => 'Disabled on this Server',	// TODO
 		'no' => 'No',	// IGNORE
 		'not_applicable' => 'No disponible',
 		'ok' => '¡Vale!',

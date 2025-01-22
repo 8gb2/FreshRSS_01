@@ -169,6 +169,10 @@ return array(
 			'help' => 'в секундах',
 			'number' => 'Оставаться в системе на протяжении',
 		),
+		'custom-favicon-enabled' => array(
+			'_' => 'Enable Custom Favicons',	// TODO
+			'help' => 'When disabled Custom Icons cannot be set, any set are ignored & icons cannot be used in any custom HTML, XML or JSON feeds',
+		),
 		'force_email_validation' => 'Обязать подтверждать адрес электронной почты',
 		'instance-name' => 'Название экземпляра',
 		'max-categories' => 'Максимальное количество категорий на пользователя',
