@@ -496,6 +496,7 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			FreshRSS_Context::systemConf()->title = Minz_Request::paramString('instance-name') ?: 'FreshRSS';
 			FreshRSS_Context::systemConf()->auto_update_url = Minz_Request::paramString('auto-update-url');
 			FreshRSS_Context::systemConf()->force_email_validation = Minz_Request::paramBoolean('force-email-validation');
+			FreshRSS_Context::systemConf()->custom_favicon_enabled = Minz_Request::paramBoolean('custom-favicon-enabled');
 			FreshRSS_Context::systemConf()->save();
 
 			invalidateHttpCache();
