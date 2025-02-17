@@ -12,7 +12,7 @@
 
 return array(
 	'about' => array(
-		'_' => 'Über',
+		'_' => 'Info',
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
 		'bug_reports' => array(
 			'environment_information' => array(
@@ -32,7 +32,7 @@ return array(
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">auf GitHub</a>',
 		'license' => 'Lizenz',
 		'project_website' => 'Projekt-Website',
-		'title' => 'Über',
+		'title' => 'Info',
 		'version' => 'Version',	// IGNORE
 	),
 	'feed' => array(
@@ -66,6 +66,7 @@ return array(
 		'mark_cat_read' => 'Kategorie als gelesen markieren',
 		'mark_feed_read' => 'Feed als gelesen markieren',
 		'mark_selection_unread' => 'Auswahl als ungelesen markieren',
+		'mylabels' => 'Meine Labels',
 		'newer_first' => 'Neuere zuerst',
 		'non-starred' => 'Alle außer Favoriten zeigen',
 		'normal_view' => 'Normale Ansicht',
@@ -90,7 +91,6 @@ return array(
 		'starred' => 'Nur Favoriten zeigen',
 		'stats' => 'Statistiken',
 		'subscription' => 'Abonnementverwaltung',
-		'tags' => 'Meine Labels',
 		'unread' => 'Nur ungelesene zeigen',
 	),
 	'share' => 'Teilen',

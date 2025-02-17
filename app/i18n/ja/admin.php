@@ -16,7 +16,7 @@ return array(
 		'allow_anonymous_refresh' => '未ログインユーザーでも記事を更新できるようにします。',
 		'api_enabled' => '<abbr>API</abbr>アクセスを許可する <small>(モバイルアプリやユーザークエリの共有に必要)</small>',
 		'form' => 'ウェブフォーム (JavaScriptが必要です)',
-		'http' => 'HTTP (上級者はHTTPSでも)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'なし (危険)',
 		'title' => '認証',
 		'token' => 'マスター認証用のトークン',
@@ -148,8 +148,9 @@ return array(
 		'main_stream' => '主なストリーム',
 		'no_idle' => '未使用のフィードはありません!',
 		'number_entries' => '%d 記事',
+		'overview' => 'Overview',	// TODO
 		'percent_of_total' => '% 総計',
-		'repartition' => '記事の仕切り',
+		'repartition' => '記事の仕切り: %s',	// DIRTY
 		'status_favorites' => 'お気に入り',
 		'status_read' => '既読',
 		'status_total' => 'すべて',

@@ -57,4 +57,6 @@ See our reference [Apache configuration](https://github.com/FreshRSS/FreshRSS/bl
 
 See specific instructions for:
 
-* Authentik : [here](16_OpenID-Connect-Authentik.md) or [here](https://goauthentik.io/integrations/services/freshrss/)
+* Authentik: [here](16_OpenID-Connect-Authentik.md) or [here](https://goauthentik.io/integrations/services/freshrss/)
+* Authelia: [here](https://www.authelia.com/integration/openid-connect/freshrss/)
+* Pocket ID: [here](18_Pocket-ID.md)
