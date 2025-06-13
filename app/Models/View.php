@@ -15,6 +15,10 @@ class FreshRSS_View extends Minz_View {
 	public ?FreshRSS_Category $category = null;
 	public ?FreshRSS_Tag $tag = null;
 	public string $current_user;
+	public int $nbUnreadCurrent;
+	public int $nbUnreadCurrentToday;
+	public int $nbUnreadCurrentYesterday;
+	public int $nbUnreadCurrentOlder;
 	/** @var iterable<FreshRSS_Entry> */
 	public $entries;
 	public ?FreshRSS_Entry $entry = null;

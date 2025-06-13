@@ -1265,7 +1265,7 @@ SQL;
 	 */
 	private function sqlListWhere(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
 			string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
-			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0): array {
+			string $continuation_id = '0', string|int $continuation_value = 0, int $limit = 1, int $offset = 0, bool $count = false): array {
 		if (!$state) {
 			$state = FreshRSS_Entry::STATE_ALL;
 		}
@@ -1322,15 +1322,15 @@ SQL;
 
 		return [array_merge($values, $searchValues), 'SELECT '
 			. ($type === 'T' ? 'DISTINCT ' : '')
-			. 'e.id'
+			. ($count ? 'count(e.id) AS count ' : 'e.id ')
 			. ($type === 'T' && $orderBy !== 'e.id' ? ', ' . $orderBy : '') // SELECT DISTINCT, ORDER BY expressions must appear in SELECT
 			. ' FROM `_entry` e '
 			. 'INNER JOIN `_feed` f ON e.id_feed = f.id '
 			. ($type === 't' || $type === 'T' ? 'INNER JOIN `_entrytag` et ON et.id_entry = e.id ' : '')
 			. 'WHERE ' . $where
 			. $search
-			. 'ORDER BY ' . $orderBy . ' ' . $order
-			. ($sort === 'id' ? '' : ', e.id ' . $order)	// For keyset pagination
+			. ($count ? '' : 'ORDER BY ' . $orderBy . ' ' . $order)
+			. ($sort === 'id' || $count ? '' : ', e.id ' . $order)	// For keyset pagination
 			. ($limit > 0 ? ' LIMIT ' . $limit : '')	// http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/
 			. ($offset > 0 ? ' OFFSET ' . $offset : '')
 		];
@@ -1657,5 +1657,20 @@ SQL;
 		$all = (int)($res[0] ?? 0);
 		$unread = (int)($res[1] ?? 0);
 		return ['all' => $all, 'unread' => $unread, 'read' => $all - $unread];
+	}
+
+	public function countContext(string $type = 'a', int $id = 0, int $state = FreshRSS_Entry::STATE_ALL, ?FreshRSS_BooleanSearch $filters = null,
+	string $id_min = '0', string $id_max = '0', string $sort = 'id', string $order = 'DESC',
+	string $continuation_id = '0', string|int $continuation_value = 0): int {
+		[$values,$sql] = $this->sqlListWhere($type, $id, $state, $filters, $id_min, $id_max, $sort, $order, $continuation_id, $continuation_value, 0, 0, true);
+		//error_log(print_r($values,true));
+		$stm = $this->pdo->prepare($sql);
+		if ($stm !== false && $stm->execute($values) && ($res = $stm->fetchAll(PDO::FETCH_COLUMN, 0)) !== false) {
+			/** @var array<numeric-string> $res */
+			return isset($res[0]) ? (int)($res[0]) : -1;
+		}
+		$info = $stm == null ? $this->pdo->errorInfo() : $stm->errorInfo();
+		Minz_Log::error('SQL error ' . __METHOD__ . json_encode($info));
+		return -2;
 	}
 }

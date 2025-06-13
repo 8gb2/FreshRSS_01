@@ -118,6 +118,7 @@ try {
 	FreshRSS_Context::updateUsingRequest(false);
 	Minz_Request::_param('search', $userSearch->getRawInput());	// Restore user search
 	$view->entries = FreshRSS_index_Controller::listEntriesByContext();
+	[$view->nbUnreadCurrent,$view->nbUnreadCurrentToday,$view->nbUnreadCurrentYesterday,$view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext();
 } catch (Minz_Exception) {
 	Minz_Error::error(400, 'Bad user query!');
 	die();

@@ -78,6 +78,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			try {
 				// +1 to account for paging logic
 				$view->entries = FreshRSS_index_Controller::listEntriesByContext(FreshRSS_Context::$number + 1);
+				[$view->nbUnreadCurrent,$view->nbUnreadCurrentToday,$view->nbUnreadCurrentYesterday,$view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext();
 				ob_start();	//Buffer "one entry at a time"
 			} catch (FreshRSS_EntriesGetter_Exception $e) {
 				Minz_Log::notice($e->getMessage());
@@ -167,6 +168,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 
 		try {
 			$this->view->entries = FreshRSS_index_Controller::listEntriesByContext();
+			[$this->view->nbUnreadCurrent,$this->view->nbUnreadCurrentToday,$this->view->nbUnreadCurrentYesterday,$this->view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext();
 		} catch (FreshRSS_EntriesGetter_Exception $e) {
 			Minz_Log::notice($e->getMessage());
 			Minz_Error::error(404);
@@ -294,6 +296,63 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 					limit: $postsPerPage ?? FreshRSS_Context::$number, offset: FreshRSS_Context::$offset) as $entry) {
 			yield $entry;
 		}
+	}
+
+	public static function countEntriesByContext(): array {
+		$entryDAO = FreshRSS_Factory::createEntryDao();
+
+		$get = FreshRSS_Context::currentGet(true);
+		if (is_array($get)) {
+			$type = $get[0];
+			$id = (int)($get[1]);
+		} else {
+			$type = $get;
+			$id = 0;
+		}
+
+		$today = new FreshRSS_BooleanSearch("date:" . date("Y-m-d"));
+		$yesterday = new FreshRSS_BooleanSearch("date:" . date("Y-m-d", time() - 86400));
+		$past = new FreshRSS_BooleanSearch("date:/" . date("Y-m-d", time() - 172800));
+		$today->add(FreshRSS_Context::$search);
+		$yesterday->add(FreshRSS_Context::$search);
+		$past->add(FreshRSS_Context::$search);
+
+		$id_min = '0';
+		if (FreshRSS_Context::$sinceHours > 0) {
+			$id_min = time() - (FreshRSS_Context::$sinceHours * 3600);
+		}
+
+		$continuation_value = 0;
+		if (FreshRSS_Context::$continuation_id !== '0') {
+			if (in_array(FreshRSS_Context::$sort, ['date', 'link', 'title'], true)) {
+				$pagingEntry = $entryDAO->searchById(FreshRSS_Context::$continuation_id);
+				$continuation_value = $pagingEntry === null ? 0 : match (FreshRSS_Context::$sort) {
+					'date' => $pagingEntry->date(true),
+					'link' => $pagingEntry->link(true),
+					'title' => $pagingEntry->title(),
+				};
+			} elseif (FreshRSS_Context::$sort === 'rand') {
+				FreshRSS_Context::$continuation_id = '0';
+			}
+		}
+
+		return [$entryDAO->countContext(
+			$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$search, id_min: $id_min,
+			id_max: FreshRSS_Context::$id_max, sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order,
+			continuation_id: FreshRSS_Context::$continuation_id, continuation_value: $continuation_value
+		), $entryDAO->countContext(
+			$type, $id, FreshRSS_Context::$state, $today, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
+			continuation_id: FreshRSS_Context::$continuation_id
+		), $entryDAO->countContext(
+			$type, $id, FreshRSS_Context::$state, $yesterday, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
+			continuation_id: FreshRSS_Context::$continuation_id
+		), $entryDAO->countContext(
+			$type, $id, FreshRSS_Context::$state, $past, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
+			continuation_id: FreshRSS_Context::$continuation_id
+		)];
 	}
 
 	/**

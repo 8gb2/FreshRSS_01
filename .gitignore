@@ -26,3 +26,4 @@
 *.autosave
 *.sass-cache
 sass.sh
+*.DS_Store
