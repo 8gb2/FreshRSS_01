@@ -16,17 +16,16 @@ return array(
 		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
 		'bug_reports' => array(
 			'environment_information' => array(
-				'_' => 'System information',	// TODO
-				'browser' => 'Browser',	// TODO
-				'database' => 'Database',	// TODO
-				'server_software' => 'Server software',	// TODO
-				'version_frss' => 'FreshRSS version',	// TODO
-				'version_php' => 'PHP version',	// TODO
+				'_' => 'システム情報',
+				'browser' => 'ブラウザ',
+				'database' => 'データベース',
+				'server_software' => 'サーバーソフトウェア',
+				'version_curl' => 'cURL version',	// TODO
+				'version_frss' => 'FreshRSSバージョン',
+				'version_php' => 'PHPバージョン',
 			),
 		),
 		'bugs_reports' => 'バグレポート',
-		'credits' => 'クレジット',
-		'credits_content' => 'いくつかのデザイン要素は<a href="http://twitter.github.io/bootstrap/">Bootstrap</a>に由来しますが、FreshRSSはこのフレームワークを使用していません。<a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">アイコン</a>は<a href="https://www.gnome.org/">GNOMEプロジェクト</a>に由来します。<em>Open Sans</em>フォントは<a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>によって作成されました。FreshRSSはPHPフレームワークの<a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>を採用しています。',
 		'documentation' => 'ドキュメント',
 		'freshrss_description' => 'FreshRSSはセルフホストできるRSSフィード収集ツールです。強力なツールで、軽量で簡単に使え、豊富な設定が特徴です。',
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">Githubへお願いします</a>',

@@ -20,13 +20,12 @@ return array(
 				'browser' => 'Browser',	// TODO
 				'database' => 'Database',	// TODO
 				'server_software' => 'Server software',	// TODO
+				'version_curl' => 'cURL version',	// TODO
 				'version_frss' => 'FreshRSS version',	// TODO
 				'version_php' => 'PHP version',	// TODO
 			),
 		),
 		'bugs_reports' => 'Hlášení chyb',
-		'credits' => 'Poděkování',
-		'credits_content' => 'Některé designové prvky pocházejí z <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>, FreshRSS ale tuto platformu nevyužívá. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ikony</a> pocházejí z <a href="https://www.gnome.org/">projektu GNOME</a>. Písmo <em>Open Sans</em> vytvořil <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS je založeno na PHP framework <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>.',
 		'documentation' => 'Dokumentace',
 		'freshrss_description' => 'FreshRSS je čtečka kanálů RSS určená k provozu na vlastním serveru. Je to nenáročný a jednoduchý, zároveň ale mocný a konfigurovatelný nástroj.',
 		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">na GitHub</a>',
