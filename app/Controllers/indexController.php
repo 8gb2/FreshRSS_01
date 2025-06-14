@@ -341,6 +341,10 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			switch (FreshRSS_Context::userConf()->countDenominator) {
 				case 'unread':
 					$stateAll = FreshRSS_Context::$state & ~FreshRSS_Entry::STATE_READ;
+					if($stateAll == 0)
+					{
+						$stateAll = FreshRSS_Entry::STATE_NOT_READ;
+					}
 					break;
 				case 'all':
 					$stateAll = FreshRSS_Entry::STATE_ALL;
@@ -354,6 +358,10 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			switch (FreshRSS_Context::userConf()->countNumerator) {
 				case 'unread':
 					$stateSome = FreshRSS_Context::$state & ~FreshRSS_Entry::STATE_READ;
+					if($stateSome == 0)
+					{
+						$stateSome = FreshRSS_Entry::STATE_NOT_READ;
+					}
 					break;
 				case 'all':
 					$stateSome = FreshRSS_Entry::STATE_ALL;
