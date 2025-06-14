@@ -17,6 +17,8 @@ declare(strict_types=1);
  * @property-read int $default_state
  * @property string $default_view
  * @property string|bool $display_categories
+ * @property string $countNumerator
+ * @property string $countDenominator
  * @property string $show_tags
  * @property int $show_tags_max
  * @property string $show_author_date

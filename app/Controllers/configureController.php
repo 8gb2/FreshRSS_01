@@ -117,6 +117,8 @@ class FreshRSS_configure_Controller extends FreshRSS_ActionController {
 			FreshRSS_Context::userConf()->posts_per_page = Minz_Request::paramInt('posts_per_page') ?: 10;
 			FreshRSS_Context::userConf()->view_mode = Minz_Request::paramStringNull('view_mode', true) ?? 'normal';
 			FreshRSS_Context::userConf()->default_view = Minz_Request::paramStringNull('default_view') ?? 'adaptive';
+			FreshRSS_Context::userConf()->countNumerator = Minz_Request::paramStringNull('countNumerator') ?? 'none';
+			FreshRSS_Context::userConf()->countDenominator = Minz_Request::paramStringNull('countDenominator') ?? 'none';
 			FreshRSS_Context::userConf()->show_fav_unread = Minz_Request::paramBoolean('show_fav_unread');
 			FreshRSS_Context::userConf()->auto_load_more = Minz_Request::paramBoolean('auto_load_more');
 			FreshRSS_Context::userConf()->display_posts = Minz_Request::paramBoolean('display_posts');

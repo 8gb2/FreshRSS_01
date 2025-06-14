@@ -78,7 +78,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			try {
 				// +1 to account for paging logic
 				$view->entries = FreshRSS_index_Controller::listEntriesByContext(FreshRSS_Context::$number + 1);
-				[$view->nbUnreadCurrent,$view->nbUnreadCurrentToday,$view->nbUnreadCurrentYesterday,$view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext();
+				[$view->nbUnreadCurrent,$view->nbUnreadCurrentToday,$view->nbUnreadCurrentYesterday,$view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext(true);
 				ob_start();	//Buffer "one entry at a time"
 			} catch (FreshRSS_EntriesGetter_Exception $e) {
 				Minz_Log::notice($e->getMessage());
@@ -168,7 +168,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 
 		try {
 			$this->view->entries = FreshRSS_index_Controller::listEntriesByContext();
-			[$this->view->nbUnreadCurrent,$this->view->nbUnreadCurrentToday,$this->view->nbUnreadCurrentYesterday,$this->view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext();
+			[$this->view->nbUnreadCurrent,$this->view->nbUnreadCurrentToday,$this->view->nbUnreadCurrentYesterday,$this->view->nbUnreadCurrentOlder] = FreshRSS_index_Controller::countEntriesByContext(true);
 		} catch (FreshRSS_EntriesGetter_Exception $e) {
 			Minz_Log::notice($e->getMessage());
 			Minz_Error::error(404);
@@ -298,7 +298,7 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 		}
 	}
 
-	public static function countEntriesByContext(): array {
+	public static function countEntriesByContext(bool $overrideState = false): array {
 		$entryDAO = FreshRSS_Factory::createEntryDao();
 
 		$get = FreshRSS_Context::currentGet(true);
@@ -336,20 +336,55 @@ class FreshRSS_index_Controller extends FreshRSS_ActionController {
 			}
 		}
 
+		if ($overrideState)
+		{
+			switch (FreshRSS_Context::userConf()->countDenominator) {
+				case 'unread':
+					$stateAll = FreshRSS_Context::$state & ~FreshRSS_Entry::STATE_READ;
+					break;
+				case 'all':
+					$stateAll = FreshRSS_Entry::STATE_ALL;
+					break;
+				case 'none':
+				case 'adaptive':
+				default:
+					$stateAll = FreshRSS_Context::$state;
+					break;
+			}
+			switch (FreshRSS_Context::userConf()->countNumerator) {
+				case 'unread':
+					$stateSome = FreshRSS_Context::$state & ~FreshRSS_Entry::STATE_READ;
+					break;
+				case 'all':
+					$stateSome = FreshRSS_Entry::STATE_ALL;
+					break;
+				case 'none':
+				case 'adaptive':
+				default:
+					$stateSome = FreshRSS_Context::$state;
+					break;
+			}
+		}
+		else
+		{
+			$stateAll = FreshRSS_Context::$state;
+			$stateSome = FreshRSS_Context::$state;
+		}
+
 		return [$entryDAO->countContext(
-			$type, $id, FreshRSS_Context::$state, FreshRSS_Context::$search, id_min: $id_min,
+			$type, $id, $stateAll, FreshRSS_Context::$search, id_min: $id_min,
 			id_max: FreshRSS_Context::$id_max, sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order,
 			continuation_id: FreshRSS_Context::$continuation_id, continuation_value: $continuation_value
 		), $entryDAO->countContext(
-			$type, $id, FreshRSS_Context::$state, $today, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			$type, $id, $stateSome, $today, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
 			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
 			continuation_id: FreshRSS_Context::$continuation_id
 		), $entryDAO->countContext(
-			$type, $id, FreshRSS_Context::$state, $yesterday, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			$type, $id, $stateSome, $yesterday, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
 			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
 			continuation_id: FreshRSS_Context::$continuation_id
 		), $entryDAO->countContext(
-			$type, $id, FreshRSS_Context::$state, $past, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
+			$type, $id, $stateSome, $past, id_min: $id_min, id_max: FreshRSS_Context::$id_max,
 			sort: FreshRSS_Context::$sort, order: FreshRSS_Context::$order, continuation_value: $continuation_value,
 			continuation_id: FreshRSS_Context::$continuation_id
 		)];

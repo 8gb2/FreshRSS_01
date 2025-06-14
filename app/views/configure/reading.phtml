@@ -76,6 +76,30 @@
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label class="group-name" for="countNumerator"><?= _t('conf.reading.fraction.numerator') ?></label>
+				<div class="group-controls">
+					<select name="countNumerator" id="countNumerator" data-leave-validation="<?= FreshRSS_Context::userConf()->countNumerator ?>">
+						<option value="none"<?= FreshRSS_Context::userConf()->countNumerator === 'none' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.none') ?></option>
+						<option value="adaptive"<?= FreshRSS_Context::userConf()->countNumerator === 'adaptive' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.adaptive') ?></option>
+						<option value="unread"<?= FreshRSS_Context::userConf()->countNumerator === 'unread' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.unread') ?></option>
+						<option value="all"<?= FreshRSS_Context::userConf()->countNumerator === 'all' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.all_articles') ?></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="group-name" for="countDenominator"><?= _t('conf.reading.fraction.denominator') ?></label>
+				<div class="group-controls">
+					<select name="countDenominator" id="countDenominator" data-leave-validation="<?= FreshRSS_Context::userConf()->countDenominator ?>">
+						<option value="none"<?= FreshRSS_Context::userConf()->countDenominator === 'none' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.none') ?></option>
+						<option value="adaptive"<?= FreshRSS_Context::userConf()->countDenominator === 'adaptive' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.adaptive') ?></option>
+						<option value="unread"<?= FreshRSS_Context::userConf()->countDenominator === 'unread' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.unread') ?></option>
+						<option value="all"<?= FreshRSS_Context::userConf()->countDenominator === 'all' ? ' selected="selected"' : '' ?>><?= _t('conf.reading.fraction.all_articles') ?></option>
+					</select>
+				</div>
+			</div>
+
 		</fieldset>
 
 		<fieldset>
